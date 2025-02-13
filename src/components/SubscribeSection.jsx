@@ -16,30 +16,15 @@ const SubscribeSection = () => {
         overflow: "hidden"
       }}
     >
-      {/* Top-Left Corner Image */}
-      <Box 
-        component="img" 
-        src={bottomCornerImage} 
-        alt="Top Corner Design" 
-        sx={{ 
-          position: "absolute", 
-          top: 120, 
-          left: 0, 
-          width: 100, 
-          height: "auto"
-        }} 
-      />
+
+     
 
       <Container maxWidth="lg">
         <Grid container spacing={3} alignItems="center">
           {/* Text Content */}
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
-              Be The First To Know
-            </Typography>
-            <Typography variant="body1" sx={{ opacity: 0.8 }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
+           
+            
           </Grid>
 
           {/* Subscription Form */}
@@ -63,19 +48,7 @@ const SubscribeSection = () => {
         </Grid>
       </Container>
 
-      {/* Bottom-Right Corner Image */}
-      <Box 
-        component="img" 
-        src={topCornerImage} 
-        alt="Bottom Corner Design" 
-        sx={{ 
-          position: "absolute", 
-          bottom: 120, 
-          right: 0, 
-          width: 100, 
-          height: "auto"
-        }} 
-      />
+     
     </Box>
   );
 };
