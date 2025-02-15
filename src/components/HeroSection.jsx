@@ -15,7 +15,7 @@ const slidesData = [
   },
   {
     image: backgroundImg2,
-    title: "Business BOOST! Society™",
+    title: "Business BOOST! Society™ ",
     description:
       "Welcome to Business BOOST! Society™. Join a community of like-minded business owners committed to positive impact and sustainable growth. At Business BOOST! Society™, we connect strategic vision with tangible results.",
   },
@@ -33,10 +33,10 @@ const HeroSection = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows:true,
+    arrows: true,
     autoplay: true,
     autoplaySpeed: 5000,
-    pauseOnHover: true,
+    pauseOnHover: false,
     swipe: true,
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
     appendDots: (dots) => (
@@ -72,10 +72,10 @@ const HeroSection = () => {
   };
 
   return (
-    <Box sx={{ position: "relative", width: "100vw", height: "90vh", overflow: "hidden" }}>
+    <Box sx={{ position: "relative", width: "100vw", height: "80vh", overflow: "hidden" }}>
       <Slider {...settings}>
         {slidesData.map((slide, index) => (
-          <Box key={index} sx={{ position: "relative", width: "100%", height: "90vh" }}>
+          <Box key={index} sx={{ position: "relative", width: "100%", height: "80vh" }}>
             {/* Background Image */}
             <img
               src={slide.image}
@@ -88,7 +88,7 @@ const HeroSection = () => {
             />
 
             {/* Dark Overlay */}
-            <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.4)" }} />
+            {/* <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.4)" }} /> */}
           </Box>
         ))}
       </Slider>
@@ -97,77 +97,67 @@ const HeroSection = () => {
       <Box
         sx={{
           position: "absolute",
-          top: isMobile ? "5.3%" : isTablet ? "5.3%" : "19.3%",
-          left: isMobile ? "4%" : "8%", // Keeping text aligned
+          top: isMobile ? "8%" : isTablet ? "12%" : "18%",
+          left: isMobile ? "2%" : "4%", // ✅ Moved more towards the left
           textAlign: "left",
           color: "white",
-          width: isMobile ? "90%" : isTablet ? "60%" : "40%",
+          width: isMobile ? "90%" : isTablet ? "50%" : "45%", // ✅ Adjusted width to fit well
         }}
       >
-        {/* Title with New Styling */}
-        <Typography
-          variant="h2"
-          sx={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: "4vw", // Responsive font size
-            fontStyle: "normal",
-            fontWeight: "700",
-            letterSpacing: "1.4px",
-            marginBottom: "0",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            textTransform: "capitalize",
-            whiteSpace: "nowrap",
-            width: "100%",
-          }}
-        >
-          {slidesData[currentSlide].title}
-        </Typography>
+    <Typography
+  variant="h2"
+  sx={{
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: isMobile ? "8.5vw" : "3.8vw",
+    fontWeight: "700",
+    letterSpacing: "1.4px",
+    textTransform: "capitalize",
+    pr: isMobile ? (slidesData[currentSlide].title.length > 20 ? "8vw" : "5vw") : "0",
+    wordBreak: "break-word",
+    width: isMobile ? "auto" : "110%", // ✅ Increased width ONLY on larger screens
+  }}
+>
+  {slidesData[currentSlide].title}
+</Typography>
 
-        {/* Updated Description with New Styling */}
-        <Typography
-          variant="h6"
-          sx={{
-            color: "#ffffffbf", // Slightly transparent white
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: "20px",
-            fontStyle: "normal",
-            fontWeight: "400",
-            letterSpacing: ".4px",
-            lineHeight: "139%",
-            margin: "0 0 20px",
-            width: "56%",
-          }}
-        >
-          {slidesData[currentSlide].description}
-        </Typography>
 
-        {/* Button Aligned to Right */}
-        {/* Button Aligned More to the Right */}
-{/* Button Aligned More to the Right */}
-{/* Button Aligned Even More to the Right */}
-{/* Button Aligned Even More to the Right */}
-<Button
+<Typography
+  variant="h6"
+  sx={{
+    color: "#ffffffbf",
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: isMobile ? "4vw" : "20px", // 🔥 Small increase but still elegant
+    fontWeight: "400",
+    letterSpacing: ".4px",
+    lineHeight: "145%", // ✅ Slightly improved readability without too much spacing
+    margin: "0 0 20px",
+    width: "110%",
+  }}
+>
+  {slidesData[currentSlide].description}
+</Typography>
+
+
+        {/* Button (No Change) */}
+        <Button
   variant="contained"
   sx={{
-    mt: -13,
-    backgroundImage: "linear-gradient(to right, #FFA500, #FF4500)", // Left side light orange, right side dark orange
+    mt: { xs: 2, sm: 3, md: -3 },
+    backgroundImage: "linear-gradient(to right, #FFA500, #FF4500)",
     color: "#fff",
     fontWeight: "bold",
-    borderRadius: "8px",
-    px: 6, // Padding बढ़ाई ताकि text proper fit हो
-    py: 1.5, // Height same रहे
-    minWidth: "210px", // Minimum width set ताकि arrow और text साथ रहे
-    display: "block",
-    ml: "900px", // Pushes button to the right
-    mr: isMobile ? "-45%" : isTablet ? "-30%" : "15%", // Right shift 3X times
+    fontFamily:"Outfit",
+    borderRadius: "15px",
+    px: { xs: 4, md: 6 },
+    py: { xs: 2, md: 2.5 }, // 🔥 Increased padding to make button taller
+    minWidth: "280px",
+    mx: { xs: "auto", md: "0" },
+    ml: { xs: "auto", md: "960px" }, // ✅ Button stays in original position
+    mr: { xs: "auto", md: "10%" },
   }}
 >
   Know More →
 </Button>
-
-
-
 
       </Box>
     </Box>

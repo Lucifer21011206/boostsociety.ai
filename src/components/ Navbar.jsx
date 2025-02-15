@@ -10,6 +10,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { NightsStay, WbSunny, Login, Menu } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -18,6 +20,9 @@ import logo from "../assets/icon.png"; // Add your logo path
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if it's mobile screen
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -30,95 +35,120 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar
-    position="static"
-    elevation={0}
-    sx={{
-      height: 90, // 🔥 Increased height (was 80 before)
-      backgroundColor: "#fff",
-      color: "#000",
-      padding: "10px 20px", // Slightly more padding for better spacing
-    }}
-  >
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        {/* Left Section: Mobile Menu + Logo */}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          {/* Mobile Menu Icon */}
-          <IconButton
-            onClick={toggleDrawer}
-            sx={{ display: { xs: "block", md: "none" }, color: "#000", mr: 1 }}
-          >
-            <Menu />
-          </IconButton>
+    <>
+      {/* Fixed Navbar */}
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{
+          height: isMobile ? 60 : 72.4, // Decrease height on mobile
+          backgroundColor: "#fff",
+          color: "#000",
+          padding: isMobile ? "5px 15px" : "9px 20px", // Adjust padding for mobile
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: isMobile ? "flex-start" : "space-between", // Move content left on mobile
+            minHeight: isMobile ? "60px" : "78px", // Reduce height on mobile
+            width: "100%",
+          }}
+        >
+          {/* Left Section: Logo & Mobile Menu - Shifted slightly to the left */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, ml: isMobile ? 0 : 2 }}>
+            {/* Mobile Menu Icon */}
+            <IconButton
+              onClick={toggleDrawer}
+              sx={{
+                display: { xs: "block", md: "none" },
+                color: "#000",
+              }}
+            >
+              <Menu />
+            </IconButton>
 
-          {/* Logo */}
-          <Box
-            component={Link}
-            to="/"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              textDecoration: "none",
-            }}
-          >
-            <img src={logo} alt="Business Boost Society" style={{ height: 40 }} />
+            {/* Logo */}
+            <Box
+              component={Link}
+              to="/"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                textDecoration: "none",
+                mt: { xs: "-8px", md: "-10px" }, // Move logo up on all screens
+              }}
+            >
+              <img
+                src={logo}
+                alt="Business Boost Society"
+                style={{
+                  height: isMobile ? 35 : 60, // Smaller on mobile, bigger on desktop
+                  width: "auto",
+                  marginLeft: isMobile ? "10px" : "0px", // Move logo slightly left on mobile
+                }}
+              />
+            </Box>
           </Box>
-        </Box>
 
-        {/* Right Section: Navigation Links + Buttons */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          {/* Desktop Navigation Links (Hidden on Mobile) */}
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
-            <Button component={Link} to="/about" sx={{ color: "#000", textTransform: "none" }}>
-              About Us
+          {/* Right Section: Navigation Links + Buttons */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2, ml: "auto" }}>
+            {/* Desktop Navigation Links (Hidden on Mobile) */}
+            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+              <Button component={Link} to="/about" sx={{ color: "#000", textTransform: "none" }}>
+                About Us
+              </Button>
+              <Button component={Link} to="/cohort" sx={{ color: "#000", textTransform: "none" }}>
+                Cohort
+              </Button>
+              <Button component={Link} to="/accelerator" sx={{ color: "#000", textTransform: "none" }}>
+                Accelerator
+              </Button>
+              <Button component={Link} to="/contact" sx={{ color: "#000", textTransform: "none" }}>
+                Contact Us
+              </Button>
+            </Box>
+
+            {/* Sign Up, Login, Dark Mode Toggle */}
+            <Button
+              component={Link}
+              to="/signup"
+              sx={{
+                fontWeight: "bold",
+                color: "#000",
+                textTransform: "none",
+                whiteSpace: "nowrap",
+                minWidth: "fit-content",
+              }}
+            >
+              Sign Up
             </Button>
-            <Button component={Link} to="/cohort" sx={{ color: "#000", textTransform: "none" }}>
-              Cohort
+            <Button
+              component={Link}
+              to="/login"
+              variant="outlined"
+              sx={{
+                borderColor: "#ff6600",
+                color: "#ff6600",
+                textTransform: "none",
+                fontWeight: "bold",
+                borderRadius: "5px",
+                whiteSpace: "nowrap",
+                minWidth: "fit-content",
+              }}
+              startIcon={<Login />}
+            >
+              Login
             </Button>
-            <Button component={Link} to="/accelerator" sx={{ color: "#000", textTransform: "none" }}>
-              Accelerator
-            </Button>
-            <Button component={Link} to="/contact" sx={{ color: "#000", textTransform: "none" }}>
-              Contact Us
-            </Button>
+            <IconButton onClick={toggleDarkMode} sx={{ color: "#000", pr:6}}>
+              {darkMode ? <WbSunny /> : <NightsStay />}
+            </IconButton>
           </Box>
+        </Toolbar>
+      </AppBar>
 
-          {/* Sign Up, Login, Dark Mode Toggle */}
-          <Button
-            component={Link}
-            to="/signup"
-            sx={{
-              fontWeight: "bold",
-              color: "#000",
-              textTransform: "none",
-              whiteSpace: "nowrap", // 🔥 Ensures text stays on one line
-              minWidth: "fit-content", // Prevents excessive stretching
-            }}
-          >
-            Sign Up
-          </Button>
-          <Button
-            component={Link}
-            to="/login"
-            variant="outlined"
-            sx={{
-              borderColor: "#ff6600",
-              color: "#ff6600",
-              textTransform: "none",
-              fontWeight: "bold",
-              borderRadius: "10px",
-              whiteSpace: "nowrap", // 🔥 Prevents wrapping
-              minWidth: "fit-content",
-            }}
-            startIcon={<Login />}
-          >
-            Login
-          </Button>
-          <IconButton onClick={toggleDarkMode} sx={{ color: "#000" }}>
-            {darkMode ? <WbSunny /> : <NightsStay />}
-          </IconButton>
-        </Box>
-      </Toolbar>
+      {/* Spacer to prevent content from overlapping */}
+      <Box sx={{ height: isMobile ? 60 : 72.4 }} />
 
       {/* Mobile Drawer (Opens from the Left) */}
       <Drawer anchor="left" open={mobileOpen} onClose={toggleDrawer}>
@@ -145,7 +175,7 @@ const Navbar = () => {
           </ListItem>
         </List>
       </Drawer>
-    </AppBar>
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ import logo from "../assets/icon.png"; // Add your logo path
 const Footer = () => {
   return (
     <Box sx={{ backgroundColor: "#fff", color: "#000", pt: 4, width: "100vw" }}>
-      <Box sx={{ maxWidth: "1200px", margin: "0 auto", px: { xs: 2, md: 3 } }}>
+      <Box sx={{ maxWidth: "1500px", margin: "0 auto", px: { xs: 2, md: 3 } }}>
         <Grid container spacing={3} alignItems="center">
           
           {/* Left Section: Logo */}
@@ -15,7 +15,7 @@ const Footer = () => {
           </Grid>
 
           {/* Center Section: Social Media & Navigation Links */}
-          <Grid item xs={12} sm={6} sx={{ textAlign: "center" }}>
+          <Grid item xs={12} sm={6} sx={{ textAlign: "center", width:"100%" }}>
             {/* Social Icons */}
             <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 2 }}>
               <IconButton href="#" sx={{ color: "#ff6600" }}><Telegram /></IconButton>
@@ -35,7 +35,7 @@ const Footer = () => {
           </Grid>
 
           {/* Right Section: Contact Info */}
-          <Grid item xs={12} sm={3} sx={{ textAlign: { xs: "center", sm: "right" } }}>
+          <Grid item xs={12} sm={3} sx={{ textAlign: { xs: "center", sm: "right" , width:"113%"} }}>
             <Typography variant="h6" sx={{ fontSize: "14px", fontWeight: "bold" }}>Contact Us</Typography>
             <Typography variant="body2">INTEGRAL ENTERPRISE LIMITED</Typography>
             <Typography variant="body2">Jadola Place, 1st Floor, Ngong Lane, Off Ngong Road</Typography>
@@ -49,20 +49,32 @@ const Footer = () => {
       <Divider sx={{ my: 3 }} />
 
       {/* Footer Bottom Section */}
-      <Box sx={{ backgroundColor: "#4B286D", color: "#fff", py: 2, textAlign: "center", width: "100vw" }}>
-        <Box sx={{ maxWidth: "1200px", margin: "0 auto", px: { xs: 2, md: 3 } }}>
-          <Typography variant="body2" sx={{ display: "inline-block", mr: { xs: 1, md: 3 } }}>
-            © 2023 Give Me a Boost | Integral Enterprise Limited
-          </Typography>
-          <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: { xs: 1, md: 2 } }}>
-            {["Terms & Conditions", "Privacy Policy", "Cookies Policies", "FAQs", "Contact Us"].map((text) => (
-              <Link key={text} href="#" color="inherit" sx={{ textDecoration: "none", fontSize: "14px" }}>
-                {text}
-              </Link>
-            ))}
-          </Box>
-        </Box>
-      </Box>
+      <Box sx={{ backgroundColor: "#4B286D", color: "#fff", py: 2, width: "100vw" }}>
+  <Box
+    sx={{
+      maxWidth: "1500px",
+      margin: "0 auto",
+      px: { xs: 2, md: 3 },
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+    }}
+  >
+    <Typography variant="body2" sx={{ cursor:"pointer",fontSize: "14px" , fontFamily:"Outfit", fontWeight:"400", lineHeight:1.5}}>
+    © 2024 Give Me a Boost | BOOST STRATEGY GROUP™ LLC
+    </Typography>
+    <Box sx={{ display: "flex", flexWrap: "wrap", gap: { xs: 1, md: 5 }, cursor:"pointer",fontSize: "1rem" , fontFamily:"Outfit", fontWeight:"400", lineHeight:1.5 }}>
+      {["Terms & Conditions", "Privacy Policy", "Cookies Policies", "FAQs", "Contact Us"].map((text) => (
+        <Link key={text} href="#" color="inherit" sx={{ textDecoration: "none", fontSize: "14px", letterSpacing: "0.00938em", color: "rgba(255, 255, 255, 0.75)", fontWeight:400 }}>
+          {text}
+        </Link>
+      ))}
+    </Box>
+  </Box>
+</Box>
+
+
     </Box>
   );
 };

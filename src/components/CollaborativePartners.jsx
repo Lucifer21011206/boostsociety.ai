@@ -45,10 +45,12 @@ const CollaborativePartners = () => {
   
 
   return (
-    <Box sx={{ width: "100%", maxWidth: "1400px", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 8 }, py: 10, position: "relative", overflow: "hidden" }}>
+    <Box sx={{ display:"flex", padding:"2rem 0px 1rem",flexDirection:"column",width: "85%", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 8 }, py: 10, position: "relative", overflow: "hidden" }}>
       <Box sx={{ textAlign: "center", maxWidth: "800px", mx: "auto", px: 2 }}>
-        <Typography variant="h4" fontWeight="bold">Collaborative Partners</Typography>
-        <Typography variant="body1" sx={{ mt: 1, mb: 4 }}>Business Boost! Society collaborates with industry leaders...</Typography>
+        <Typography variant="h4" sx={{mt:"-6%",marginLeft:"6%",mb:"2%", fontWeight:600, fontFamily: "Outfit", fontSize:"2.5em", lineHeight:1.5}} fontWeight="bold">Collaborative Partners</Typography>
+
+
+        <Typography variant="body1" sx={{ marginLeft:"-20%",textAlign:"Center",mt: 1, mb: 4 ,fontSize:"18px", width:"150%",fontWeight:400,fontFamily: "Outfit", color: "rgba(63, 60, 60, 0.87)", lineHeight:1.334}}>Business Boost! Society is proud to collaborate with industry-leading partners who share our vision for innovation and excellence. These strategic partnerships allow us to combine our expertise and resources to deliver exceptional solutions to our clients. Here are some of our valued collaborative partners.</Typography>
       </Box>
 
       {/* Carousel Buttons for All Screens */}
@@ -110,7 +112,7 @@ const CollaborativePartners = () => {
         <Box sx={{ display: "flex", flexWrap: "nowrap", gap: 2, transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`, transition: "transform 0.5s ease-in-out", width: "100%" }}>
           {partners.map((partner, index) => (
 
-            <Card key={index} sx={{ width: isMobile ? "100%" : "calc(100% / 3)", height: { xs: "380px", md: "400px" }, backgroundColor: index % 2 === 0 ? "#F5F5F5" : "#FFF3E0", borderRadius: "12px 12px 12px 0", display: "flex", flexDirection: "column", justifyContent: "space-between", p: 2, flexShrink: 0, position: "relative" }}>
+            <Card key={index} sx={{ width: isMobile ? "100%" : "calc(100% / 3.5)", height: { xs: "380px", md: "400px" }, backgroundColor: index % 2 === 0 ? "#F5F5F5" : "#FFF3E0", borderRadius: "12px 12px 12px 0", display: "flex", flexDirection: "column", justifyContent: "space-between", p: 2, flexShrink: 0, position: "relative" }}>
               
               <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-start", width: "100%", pl: 2 }}>
                 <CardMedia component="img" image={partner.img} alt={partner.name} sx={{ height: 70, width: "50%", objectFit: "contain", ml: "-10px" }} />

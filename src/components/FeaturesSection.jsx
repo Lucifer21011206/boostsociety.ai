@@ -35,43 +35,64 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <Box sx={{ py: 10, backgroundColor: "#fff" }}>
+    <Box sx={{ 
+      py: 10, 
+      backgroundColor: "#fff", 
+      ml: { md: -6, lg: -41 }, // Shift left only on larger screens
+      px: { xs: "5%", sm: "7%", md: "0%" } // Add padding for smaller screens
+    }}>
+    
+
       <Container maxWidth="lg">
         <Grid container spacing={6} alignItems="center">
           {/* Left Content */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="body2" sx={{ color: "#FF6600", fontWeight: "bold" }}>
-              Key Features & Benefits
-            </Typography>
-            <Typography variant="h3" fontWeight="bold" sx={{ mt: 1, mb: 2 }}>
-              Unlock Exclusive Resources and Opportunities
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7, fontSize: "1.1rem", color: "#333" }}>
-              Introducing the BoostSociety.ai portal - your gateway to advanced business and technical functionality.{' '}
-              <strong>Partner with us</strong> to host your educational, community, and business programs on our platform,
-              benefiting from dynamic, expert-led cohorts and innovative tools. Enhance learning with interactive courses, robust
-              community features, and seamless communication. Track progress efficiently and gain valuable insights with our
-              monitoring tools. Elevate your organization and unlock your programs' full potential with BoostSociety.ai.{' '}
-              <strong>Interested in joining one of our cohorts?</strong> Explore our offerings and apply TODAY!
-            </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#FF6600",
-                color: "#fff",
-                borderRadius: "8px",
-                px: 4,
-                py: 1.5,
-                textTransform: "none",
-                fontSize: "1rem",
-                fontWeight: "bold",
-                boxShadow:
-                  "rgba(0, 0, 0, 0.11) 0px 1px 1px, rgba(0, 0, 0, 0.11) 0px 2px 2px, rgba(0, 0, 0, 0.11) 0px 4px 4px, rgba(0, 0, 0, 0.11) 0px 6px 8px, rgba(0, 0, 0, 0.11) 0px 8px 16px",
-              }}
-            >
-              View All Features →
-            </Button>
-          </Grid>
+          <Grid item xs={12} md={6} sx={{ pl: { md: "5%", lg: 0 } }}>
+  <Typography variant="body2" fontFamily="sans-serif"  fontSize="20px" lineHeight="1.5" sx={{ fontWeight:"600",color: "#FF6600", fontWeight: "bold" }}>
+    Key Features & Benefits
+  </Typography>
+  <Typography 
+    variant="h3" 
+    fontWeight="600" 
+    lineHeight="1.5"
+    letterSpacing="0.00938em"
+    overflow="hidden"
+    textOverflow="none"
+    sx={{ 
+      mt: 1, 
+      mb: 2, 
+      fontSize: { xs: "1.5em", md: "2.5em" }, 
+      fontFamily: "Outfit"
+    }}
+  >
+    Unlock Exclusive Resources and Opportunities
+  </Typography>
+  <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7, fontSize: "1.1rem", color: "#333" , fontFamily: "Outfit"}}>
+    Introducing the BoostSociety.ai portal - your gateway to advanced business and technical functionality.{' '}
+    <strong>Partner with us</strong> to host your educational, community, and business programs on our platform,
+    benefiting from dynamic, expert-led cohorts and innovative tools. Enhance learning with interactive courses, robust
+    community features, and seamless communication. Track progress efficiently and gain valuable insights with our
+    monitoring tools. Elevate your organization and unlock your programs' full potential with BoostSociety.ai.{' '}
+    <strong>Interested in joining one of our cohorts?</strong> Explore our offerings and apply TODAY!
+  </Typography>
+  <Button
+    variant="contained"
+    sx={{
+      backgroundColor: "#FF6600",
+      color: "#fff",
+      borderRadius: "8px",
+      px: 4,
+      py: 1.5,
+      textTransform: "none",
+      fontSize: "1rem",
+      fontWeight: "bold",
+      boxShadow:
+        "rgba(0, 0, 0, 0.11) 0px 1px 1px, rgba(0, 0, 0, 0.11) 0px 2px 2px, rgba(0, 0, 0, 0.11) 0px 4px 4px, rgba(0, 0, 0, 0.11) 0px 6px 8px, rgba(0, 0, 0, 0.11) 0px 8px 16px",
+    }}
+  >
+    View All Features →
+  </Button>
+</Grid>
+
 
           {/* Feature Cards */}
           <Grid item xs={12} md={6}>
