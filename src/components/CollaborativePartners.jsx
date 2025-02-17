@@ -45,7 +45,7 @@ const CollaborativePartners = () => {
   
 
   return (
-    <Box sx={{ display:"flex", padding:"2rem 0px 1rem",flexDirection:"column",width: "85%", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 8 }, py: 10, position: "relative", overflow: "hidden" }}>
+    <Box sx={{ display:"flex", padding:"2rem 0px 1rem",flexDirection:"column",width: "85%", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 8 }, py: 5, position: "relative", overflow: "hidden" , mt:4}}>
       <Box sx={{ textAlign: "center", maxWidth: "800px", mx: "auto", px: 2 }}>
         <Typography variant="h4" sx={{mt:"-6%",marginLeft:"6%",mb:"2%", fontWeight:600, fontFamily: "Outfit", fontSize:"2.5em", lineHeight:1.5}} fontWeight="bold">Collaborative Partners</Typography>
 
@@ -60,7 +60,7 @@ const CollaborativePartners = () => {
   sx={{
     position: "absolute",
     left: 10,
-    top: "50%",
+    top: { xs: "65%", sm: "60%" }, 
     transform: "translateY(-50%)",
     backgroundColor: "#FF6600",
     borderRadius: "50%",
@@ -74,7 +74,7 @@ const CollaborativePartners = () => {
     "&.Mui-disabled": {
       backgroundColor: "#FF6600", // Keep the same color when disabled
       color: "#fff", // Ensure the icon remains visible
-      opacity: 1, // Prevent MUI from making it fully transparent
+      opacity: 0.5, // Prevent MUI from making it fully transparent
     },
   }}
 >
@@ -88,7 +88,7 @@ const CollaborativePartners = () => {
   sx={{
     position: "absolute",
     right: 10,
-    top: "50%",
+    top: { xs: "65%", sm: "60%" }, 
     transform: "translateY(-50%)",
     backgroundColor: "#FF6600",
     borderRadius: "50%",
@@ -102,7 +102,7 @@ const CollaborativePartners = () => {
     "&.Mui-disabled": {
       backgroundColor: "#FF6600",
       color: "#fff",
-      opacity: 1,
+      opacity: 0.5,
     },
   }}
 >
@@ -110,39 +110,75 @@ const CollaborativePartners = () => {
 </IconButton>
       <Box sx={{ display: "flex", justifyContent: "center", overflow: "hidden", mt: 3 }}>
         <Box sx={{ display: "flex", flexWrap: "nowrap", gap: 2, transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`, transition: "transform 0.5s ease-in-out", width: "100%" }}>
-          {partners.map((partner, index) => (
-
-            <Card key={index} sx={{ width: isMobile ? "100%" : "calc(100% / 3.5)", height: { xs: "380px", md: "400px" }, backgroundColor: index % 2 === 0 ? "#F5F5F5" : "#FFF3E0", borderRadius: "12px 12px 12px 0", display: "flex", flexDirection: "column", justifyContent: "space-between", p: 2, flexShrink: 0, position: "relative" }}>
-              
-              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-start", width: "100%", pl: 2 }}>
-                <CardMedia component="img" image={partner.img} alt={partner.name} sx={{ height: 70, width: "50%", objectFit: "contain", ml: "-10px" }} />
-              </Box>
-
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h6" fontWeight="bold">{partner.name}</Typography>
-                <Typography variant="body2" sx={{ mt: 1, fontSize: "0.9rem" }}>{partner.description}</Typography>
-              </CardContent>
-
-              <Typography
-  variant="body2"
-  sx={{
-    color: "#FF6600",
-    fontWeight: "bold",
-    cursor: "pointer",
-    position: "relative",
-    top: { xs: -30, md: -40 }, // ऊपर shift
-    left: { xs: 5, md: 25 }, // थोड़ा left move किया
-  }}
->
-  Learn more →
-</Typography>
-
-
-              {/* Vector Overlay Image */}
-              <Box sx={{ position: "absolute", bottom: -2, left: 0, opacity: 1, width: "100px", height: "100px" }}>
-                <CardMedia component="img" src={vector24} alt="Vector 24" sx={{ width: "100%", height: "100%", objectFit: "contain" }} />
-              </Box>
-            </Card>
+          {partners.map((partner, index) => ( 
+            <Card 
+            key={index} 
+            sx={{ 
+              width: isMobile ? "calc(100%/1)" : "calc(100% / 3.5)", 
+              height: { xs: "320px", md: "340px" }, 
+              backgroundColor: index % 2 === 0 ? "rgba(82, 49, 104, 0.1)" : "#FFF3E0", 
+              borderRadius: "12px 12px 12px 0", 
+              display: "flex", 
+              flexDirection: "column", 
+              justifyContent: "space-between", 
+              p: 3, // Increased padding for better spacing 
+              flexShrink: 0, 
+              position: "relative" 
+            }}
+          >
+          
+            {/* Logo Section */}
+            <Box sx={{ display: "flex", alignItems: "center", width: "100%", mb: 1 }}>
+              <CardMedia 
+                component="img" 
+                image={partner.img} 
+                alt={partner.name} 
+                sx={{ 
+                  height: "80.4px", 
+                  width: "auto", 
+                  objectFit: "contain", 
+                  maxWidth: "60%", 
+                  ml: 0 // Ensures left alignment
+                }} 
+              />
+            </Box>
+          
+            {/* Content Section */}
+            <CardContent sx={{ p: 0 }}>
+              <Typography variant="h6" fontWeight="bold" sx={{ textAlign: "left", mb: 1, mt:"-5%" }}>
+                {partner.name}
+              </Typography>
+              <Typography variant="body2" sx={{ textAlign: "left", fontSize: "0.9rem" , mt:2}}>
+                {partner.description}
+              </Typography>
+            </CardContent>
+          
+            {/* Learn More */}
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily:"Outfit",
+                color: "rgb(84, 47, 3)",
+                fontWeight: "400",
+                lineHeight:1.5,
+                letterSpacing:"0.00938em",
+                fontSize:"22px",
+                cursor: "pointer",
+                textAlign: "left",
+                mt: 0 ,
+                mb:3
+              }}
+            >
+              Learn more →
+            </Typography>
+          
+            {/* Vector Overlay Image */}
+            <Box sx={{ position: "absolute", bottom: -4, left: 0, opacity: 1, width: "100px", height: "100px" }}>
+              <CardMedia component="img" src={vector24} alt="Vector 24" sx={{ width: "100%", height: "100%", objectFit: "contain" }} />
+            </Box>
+          
+          </Card>
+          
           ))}
         </Box>
       </Box>
