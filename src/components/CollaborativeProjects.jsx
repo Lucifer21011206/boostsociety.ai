@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Container, Typography, Grid, Card, CardContent, CardMedia, useMediaQuery } from "@mui/material";
+import { Box,IconButton, Container, Typography, Grid, Card, CardContent, CardMedia, useMediaQuery } from "@mui/material";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import { useSwipeable } from "react-swipeable";
@@ -113,28 +113,54 @@ const CollaborativeProjects = () => {
             </Card>
 
             {/* Navigation Arrows */}
-            <ArrowBackIos
-              sx={{
-                position: "absolute",
-                left: "5%",
-                color: "#fff",
-                fontSize: "1.5rem",
-                cursor: "pointer",
-                display: currentIndex === 0 ? "none" : "block",
-              }}
-              onClick={handlePrev}
-            />
+            <IconButton
+  onClick={currentIndex > 0 ? handlePrev : undefined} // Disable if first card
+  disabled={currentIndex === 0}
+  sx={{
+    position: "absolute",
+    left: "5%",
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "#FF6600",
+    },
+    "&.Mui-disabled": {
+      backgroundColor: "#FF6600", // Keep the same color when disabled
+      color: "#fff", // Ensure the icon remains visible
+      opacity: 0.5, // Prevent MUI from making it fully transparent
+    },
+    fontSize: "1.5rem",
+    cursor: "pointer",
+    cursor: currentIndex === 0 ? "not-allowed" : "pointer",
+    display: { xs: "block", md: "block" }, // Ensure it's visible on normal screens (md and above)
+  }}
+>
+  <ArrowBackIos />
+</IconButton>
+
+
+            <IconButton 
+            sx={{
+              position: "absolute",
+              right: "5%",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#FF6600",
+              },
+              "&.Mui-disabled": {
+                backgroundColor: "#FF6600", // Keep the same color when disabled
+                color: "#fff", // Ensure the icon remains visible
+                opacity: 0.5, // Prevent MUI from making it fully transparent
+              },
+              fontSize: "1.5rem",
+              cursor: "pointer",
+              display: currentIndex === projects.length - 1 ? "none" : "block",
+            }}
+            onClick={handleNext}
+            >
             <ArrowForwardIos
-              sx={{
-                position: "absolute",
-                right: "5%",
-                color: "#fff",
-                fontSize: "1.5rem",
-                cursor: "pointer",
-                display: currentIndex === projects.length - 1 ? "none" : "block",
-              }}
-              onClick={handleNext}
+              
             />
+            </IconButton>
           </Box>
         ) : (
           <Grid container spacing={3} sx={{ width: isTablet ? "85%" : "80%", marginLeft: isTablet ? "5%" : "-17%", height: "500px", borderRadius: "30px" }}>
