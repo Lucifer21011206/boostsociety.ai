@@ -33,7 +33,11 @@ const CollaborativePartners = () => {
   };
 
   return (
+<<<<<<< HEAD
     <Box sx={{ display: "flex", padding: "2rem 0px 1rem", flexDirection: "column", width: "93%", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 8 }, py: 5, position: "relative", overflow: "hidden", mt: 4 }}>
+=======
+    <Box sx={{ display:"flex", padding:"2rem 0px 1rem",flexDirection:"column",width: "85%", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 8 }, py: 5, position: "relative", overflow: "hidden" , mt:4}}>
+>>>>>>> bc53f302a182c3fcf4722dc6130fe581d8b9bea3
       <Box sx={{ textAlign: "center", maxWidth: "800px", mx: "auto", px: 2 }}>
         <Typography variant="h4" sx={{ mt: "-6%", marginLeft: "6%", mb: "2%", fontWeight: 600, fontFamily: "Outfit", fontSize: "2.5em", lineHeight: 1.5 }} fontWeight="bold">Collaborative Partners</Typography>
         <Typography variant="body1" sx={{ marginLeft: "-20%", textAlign: "Center", mt: 1, mb: 4, fontSize: "18px", width: "150%", fontWeight: 400, fontFamily: "Outfit", color: "rgba(63, 60, 60, 0.87)", lineHeight: 1.334 }}>
@@ -41,6 +45,7 @@ const CollaborativePartners = () => {
         </Typography>
       </Box>
 
+<<<<<<< HEAD
       {/* Carousel Container */}
       <Box sx={{ display: "flex", justifyContent: "center", overflow: "hidden", mt: 3, position: "relative" }}>
         {/* Left Arrow Button */}
@@ -115,6 +120,134 @@ const CollaborativePartners = () => {
                 <CardMedia component="img" src={vector24} alt="Vector 24" sx={{ width: "100%", height: "100%", objectFit: "contain" }} />
               </Box>
             </Card>
+=======
+      {/* Carousel Buttons for All Screens */}
+      <IconButton
+  onClick={currentIndex > 0 ? handlePrev : undefined} // Disable if first card
+  disabled={currentIndex === 0}
+  sx={{
+    position: "absolute",
+    left: 10,
+    top: { xs: "65%", sm: "60%" }, 
+    transform: "translateY(-50%)",
+    backgroundColor: "#FF6600",
+    borderRadius: "50%",
+    p: 1,
+    zIndex: 2,
+    color: "#fff",
+    cursor: currentIndex === 0 ? "not-allowed" : "pointer", // Prevent clicking when disabled
+    "&:hover": {
+      backgroundColor: "#FF6600",
+    },
+    "&.Mui-disabled": {
+      backgroundColor: "#FF6600", // Keep the same color when disabled
+      color: "#fff", // Ensure the icon remains visible
+      opacity: 0.5, // Prevent MUI from making it fully transparent
+    },
+  }}
+>
+  <ArrowBackIos />
+</IconButton>
+
+
+<IconButton
+  onClick={currentIndex + visibleCards < totalPartners ? handleNext : undefined}
+  disabled={currentIndex + visibleCards >= totalPartners}
+  sx={{
+    position: "absolute",
+    right: 10,
+    top: { xs: "65%", sm: "60%" }, 
+    transform: "translateY(-50%)",
+    backgroundColor: "#FF6600",
+    borderRadius: "50%",
+    p: 1,
+    zIndex: 2,
+    color: "#fff",
+    cursor: currentIndex + visibleCards >= totalPartners ? "not-allowed" : "pointer",
+    "&:hover": {
+      backgroundColor: "#FF6600",
+    },
+    "&.Mui-disabled": {
+      backgroundColor: "#FF6600",
+      color: "#fff",
+      opacity: 0.5,
+    },
+  }}
+>
+  <ArrowForwardIos />
+</IconButton>
+      <Box sx={{ display: "flex", justifyContent: "center", overflow: "hidden", mt: 3 }}>
+        <Box sx={{ display: "flex", flexWrap: "nowrap", gap: 2, transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`, transition: "transform 0.5s ease-in-out", width: "100%" }}>
+          {partners.map((partner, index) => ( 
+            <Card 
+            key={index} 
+            sx={{ 
+              width: isMobile ? "calc(100%/1)" : "calc(100% / 3.5)", 
+              height: { xs: "320px", md: "340px" }, 
+              backgroundColor: index % 2 === 0 ? "rgba(82, 49, 104, 0.1)" : "#FFF3E0", 
+              borderRadius: "12px 12px 12px 0", 
+              display: "flex", 
+              flexDirection: "column", 
+              justifyContent: "space-between", 
+              p: 3, // Increased padding for better spacing 
+              flexShrink: 0, 
+              position: "relative" 
+            }}
+          >
+          
+            {/* Logo Section */}
+            <Box sx={{ display: "flex", alignItems: "center", width: "100%", mb: 1 }}>
+              <CardMedia 
+                component="img" 
+                image={partner.img} 
+                alt={partner.name} 
+                sx={{ 
+                  height: "80.4px", 
+                  width: "auto", 
+                  objectFit: "contain", 
+                  maxWidth: "60%", 
+                  ml: 0 // Ensures left alignment
+                }} 
+              />
+            </Box>
+          
+            {/* Content Section */}
+            <CardContent sx={{ p: 0 }}>
+              <Typography variant="h6" fontWeight="bold" sx={{ textAlign: "left", mb: 1, mt:"-5%" }}>
+                {partner.name}
+              </Typography>
+              <Typography variant="body2" sx={{ textAlign: "left", fontSize: "0.9rem" , mt:2}}>
+                {partner.description}
+              </Typography>
+            </CardContent>
+          
+            {/* Learn More */}
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily:"Outfit",
+                color: "rgb(84, 47, 3)",
+                fontWeight: "400",
+                lineHeight:1.5,
+                letterSpacing:"0.00938em",
+                fontSize:"22px",
+                cursor: "pointer",
+                textAlign: "left",
+                mt: 0 ,
+                mb:3
+              }}
+            >
+              Learn more →
+            </Typography>
+          
+            {/* Vector Overlay Image */}
+            <Box sx={{ position: "absolute", bottom: -4, left: 0, opacity: 1, width: "100px", height: "100px" }}>
+              <CardMedia component="img" src={vector24} alt="Vector 24" sx={{ width: "100%", height: "100%", objectFit: "contain" }} />
+            </Box>
+          
+          </Card>
+          
+>>>>>>> bc53f302a182c3fcf4722dc6130fe581d8b9bea3
           ))}
         </Box>
 

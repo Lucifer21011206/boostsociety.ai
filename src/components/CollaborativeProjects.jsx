@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { Box, IconButton, Container, Typography, Grid, Card, CardContent, CardMedia, useMediaQuery } from "@mui/material";
+=======
+import { Box,IconButton, Container, Typography, Grid, Card, CardContent, CardMedia, useMediaQuery } from "@mui/material";
+>>>>>>> bc53f302a182c3fcf4722dc6130fe581d8b9bea3
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import { useSwipeable } from "react-swipeable";
@@ -114,6 +118,7 @@ const CollaborativeProjects = () => {
 
             {/* Navigation Arrows */}
             <IconButton
+<<<<<<< HEAD
               onClick={handlePrev} // Always allow clicking
               sx={{
                 position: "absolute",
@@ -145,6 +150,54 @@ const CollaborativeProjects = () => {
               }}
             >
               <ArrowForwardIos />
+=======
+  onClick={currentIndex > 0 ? handlePrev : undefined} // Disable if first card
+  disabled={currentIndex === 0}
+  sx={{
+    position: "absolute",
+    left: "5%",
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "#FF6600",
+    },
+    "&.Mui-disabled": {
+      backgroundColor: "#FF6600", // Keep the same color when disabled
+      color: "#fff", // Ensure the icon remains visible
+      opacity: 0.5, // Prevent MUI from making it fully transparent
+    },
+    fontSize: "1.5rem",
+    cursor: "pointer",
+    cursor: currentIndex === 0 ? "not-allowed" : "pointer",
+    display: { xs: "block", md: "block" }, // Ensure it's visible on normal screens (md and above)
+  }}
+>
+  <ArrowBackIos />
+</IconButton>
+
+
+            <IconButton 
+            sx={{
+              position: "absolute",
+              right: "5%",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#FF6600",
+              },
+              "&.Mui-disabled": {
+                backgroundColor: "#FF6600", // Keep the same color when disabled
+                color: "#fff", // Ensure the icon remains visible
+                opacity: 0.5, // Prevent MUI from making it fully transparent
+              },
+              fontSize: "1.5rem",
+              cursor: "pointer",
+              display: currentIndex === projects.length - 1 ? "none" : "block",
+            }}
+            onClick={handleNext}
+            >
+            <ArrowForwardIos
+              
+            />
+>>>>>>> bc53f302a182c3fcf4722dc6130fe581d8b9bea3
             </IconButton>
           </Box>
         ) : (
