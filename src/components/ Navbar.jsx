@@ -15,7 +15,10 @@ import {
 } from "@mui/material";
 import { NightsStay, WbSunny, Login, Menu } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import logo from "../assets/icon.png"; // Add your logo path
+import logo from "../assets/icon.png";
+import loginIcon from "../assets/Layer 2.svg"; 
+import line317 from "../assets/Line 317.svg"; // Add your logo path
+
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -94,17 +97,17 @@ const Navbar = () => {
           {/* Right Section: Navigation Links + Buttons */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 2, ml: "auto" }}>
             {/* Desktop Navigation Links (Hidden on Mobile) */}
-            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
-              <Button component={Link} to="/about" sx={{ color: "#000", textTransform: "none" }}>
-                About Us
+            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
+              <Button component={Link} to="/about" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap", gap:"30%"}}>
+                About Us <img src={line317} alt="Login Icon" style={{width: "20px", height: "20px" }} />
               </Button>
-              <Button component={Link} to="/cohort" sx={{ color: "#000", textTransform: "none" }}>
-                Cohort
+              <Button component={Link} to="/cohort" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap",gap:"30%" }}>
+                Cohort <img src={line317} alt="Login Icon" style={{width: "20px", height: "20px" }} />
               </Button>
-              <Button component={Link} to="/accelerator" sx={{ color: "#000", textTransform: "none" }}>
-                Accelerator
+              <Button component={Link} to="/accelerator" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap", gap:"20%"}}>
+                Accelerator <img src={line317} alt="Login Icon" style={{width: "20px", height: "20px" }} />
               </Button>
-              <Button component={Link} to="/contact" sx={{ color: "#000", textTransform: "none" }}>
+              <Button component={Link} to="/contact" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap" }}>
                 Contact Us
               </Button>
             </Box>
@@ -135,10 +138,11 @@ const Navbar = () => {
                 borderRadius: "5px",
                 whiteSpace: "nowrap",
                 minWidth: "fit-content",
+                gap:"10%"
               }}
-              startIcon={<Login />}
+              // startIcon={<Login />}
             >
-              Login
+              Login   <img src={loginIcon} alt="Login Icon" style={{width: "20px", height: "20px" }} />
             </Button>
             <IconButton onClick={toggleDarkMode} sx={{ color: "#000", pr:6}}>
               {darkMode ? <WbSunny /> : <NightsStay />}
@@ -154,9 +158,13 @@ const Navbar = () => {
       <Drawer anchor="left" open={mobileOpen} onClose={toggleDrawer}>
         <List sx={{ width: 250 }}>
           <ListItem disablePadding>
-            <ListItemButton component={Link} to="/about" onClick={toggleDrawer}>
-              <ListItemText primary="About Us" />
-            </ListItemButton>
+          <ListItemButton component={Link} to="/about" onClick={toggleDrawer}>
+  <ListItemText 
+    primary="About Us"  
+    
+  />
+</ListItemButton>
+
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component={Link} to="/cohort" onClick={toggleDrawer}>

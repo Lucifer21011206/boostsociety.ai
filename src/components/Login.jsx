@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid, Typography, TextField, Button, FormControlLabel, Checkbox, Link, useTheme, useMediaQuery } from "@mui/material";
 import rightsidesection from "../assets/rigthsidesection.svg";
 import logoicon from "../assets/icon.png";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate the form
+    const newErrors = { email: "", password: "" };
+
+    if (!email) {
+      newErrors.email = "Email is required.";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Email address is invalid.";
+    }
+
+    if (!password) {
+      newErrors.password = "Password is required.";
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters long.";
+    }
+
+    setErrors(newErrors);
+
+    if (!newErrors.email && !newErrors.password) {
+      // Form is valid, proceed with login
+      console.log("Form Submitted");
+    }
+
+
+
+  };
+
+  const isSmallHeight = useMediaQuery("(max-height: 640px)");
+  const isMediumHeight = useMediaQuery("(min-height: 641px) and (max-height: 790px)");
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down(1280)); // Hide right image below 1280px
   const isMediumScreen = useMediaQuery(theme.breakpoints.between(900, 1280)); // Adjust width when image is hidden
@@ -39,12 +74,21 @@ const Login = () => {
         </Box>
 
         <Box sx={{ width: "100vw", maxWidth: isSmallScreen ? "800px" : "600px", textAlign: "center" }}>
-          <Typography sx={{ marginTop: "-25%", textAlign: "left", fontSize: "2.125rem", fontWeight: "500", color: "rgb(0, 0, 0)" }}>
+          <Typography
+            sx={{
+              marginTop: isSmallHeight ? "15%" : isMediumHeight ? "10%" : "-25%",
+              textAlign: "left",
+              fontSize: "2.125rem",
+              fontWeight: "500",
+              color: "rgb(0, 0, 0)",
+            }}
+          >
             Welcome Back
           </Typography>
+
           <Typography sx={{ margin: "16px 0px 0px", fontSize: "18px", fontWeight: 400, color: "#555", mb: 3, textAlign: "left" }}>
             Don't have an account?{" "}
-            <Link href="#" sx={{ fontWeight: "600", color: "rgb(82, 49, 104)" }}>
+            <Link href="/signup" sx={{ fontWeight: "600", color: "rgb(82, 49, 104)" }}>
               SignUp
             </Link>
           </Typography>
@@ -54,12 +98,47 @@ const Login = () => {
             <Typography sx={{ fontSize: "18px", fontWeight: "400", color: "#333", mt: "6%", mb: "4px" }}>
               Email
             </Typography>
-            <TextField fullWidth variant="outlined" placeholder="Enter your email address" sx={{ "& .MuiOutlinedInput-root": { borderRadius: "10px" } }} />
+            <TextField
+              fullWidth
+              variant="outlined"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "10px" } }}
+              error={!!errors.email}
+              helperText={errors.email}
+              FormHelperTextProps={{
+                sx: {
+                  textAlign: "left", // Align helper text to the left
+                  ml:0,
+                  fontSize: "14px",
+                  color: "red",
+                },
+              }}
+            />
 
             <Typography sx={{ mt: 3, fontSize: "18px", fontWeight: "400", color: "#333", mb: "4px" }}>
               Password
             </Typography>
-            <TextField fullWidth variant="outlined" type="password" placeholder="Enter password" sx={{ "& .MuiOutlinedInput-root": { borderRadius: "10px" } }} />
+            <TextField
+              fullWidth
+              variant="outlined"
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "10px" } }}
+              error={!!errors.password}
+              helperText={errors.password}
+              FormHelperTextProps={{
+                sx: {
+                  textAlign: "left", // Align helper text to the left
+                  ml:0,
+                  fontSize: "14px",
+                  color: "red",
+                },
+              }}
+            />
           </Box>
 
           {/* Remember me and Forgot Password */}
@@ -84,6 +163,7 @@ const Login = () => {
               textTransform: "none",
               "&:hover": { opacity: 0.9 },
             }}
+            onClick={handleSubmit}
           >
             Login Now
           </Button>

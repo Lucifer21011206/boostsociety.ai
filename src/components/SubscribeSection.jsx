@@ -32,13 +32,13 @@ const SubscribeSection = () => {
       />
 
       <Container maxWidth="lg">
-        <Grid container spacing={3} alignItems="center">
+        <Grid container spacing={3} alignItems="center" width="117%">
           {/* Text Content */}
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
+            <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2,ml:-20 }}>
               Be The First To Know
             </Typography>
-            <Typography variant="body1" sx={{ opacity: 0.8 }}>
+            <Typography variant="body1" sx={{ opacity: 0.8, ml:-20 }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Typography>
           </Grid>

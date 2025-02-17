@@ -79,17 +79,30 @@ const TestimonialsSection = () => {
         }}
       >
         <Button
-          sx={{
-            minWidth: "50px",
-            height: "50px",
-            backgroundColor: "#f4a261",
-            color: "#fff",
-            borderRadius: "50%",
-            px: 2,
-            "&:hover": { backgroundColor: "#e76f51" },
-          }}
-          onClick={handlePrev}
-        >
+
+sx={{
+
+  minWidth: "50px",
+
+  height: "50px",
+
+  backgroundColor: "#f4a261",
+
+  color: "#fff",
+
+  borderRadius: "50%",
+
+  px: 2,
+
+  ml: { xs: 0, md: 4 }, // Add margin-left of 4 for medium and larger screens
+
+  "&:hover": { backgroundColor: "#e76f51" },
+
+}}
+
+onClick={handlePrev}
+
+>
           <ArrowBackIosNewIcon fontSize="medium" />
         </Button>
 

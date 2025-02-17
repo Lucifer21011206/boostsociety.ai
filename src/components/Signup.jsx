@@ -46,7 +46,7 @@ const Signup = () => {
           </Typography>
           <Typography sx={{ margin: "16px 0px 0px", fontSize: "18px", fontWeight: 400, color: "#555", mb: 3, textAlign: "left" }}>
             Already have an account? {" "}
-            <Link href="#" sx={{ fontWeight: "600", color: "rgb(82, 49, 104)" ,textDecoration:"none"}}>
+            <Link href="/login" sx={{ fontWeight: "600", color: "rgb(82, 49, 104)" ,textDecoration:"none"}}>
               Login
             </Link>
           </Typography>
@@ -54,7 +54,13 @@ const Signup = () => {
           {/* Form Fields */}
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
-              <TextField fullWidth variant="outlined" label="First Name" placeholder="Enter your first name" />
+               <Typography sx={{ fontSize: "18px", fontWeight: "400", color: "#333", mt: "6%", mb: "4px" }}>
+                  First Name
+                </Typography>
+              <TextField fullWidth 
+              variant="outlined" 
+              label="First Name" 
+              placeholder="Enter your first name" />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField fullWidth variant="outlined" label="Last Name" placeholder="Enter your last name" />

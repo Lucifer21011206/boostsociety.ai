@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Container, Typography, Grid, Card, CardContent, CardMedia, useMediaQuery } from "@mui/material";
+import { Box, IconButton, Container, Typography, Grid, Card, CardContent, CardMedia, useMediaQuery } from "@mui/material";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import { useSwipeable } from "react-swipeable";
@@ -46,25 +46,25 @@ const CollaborativeProjects = () => {
       <Container maxWidth="lg">
         {/* Section Title */}
         <Typography
-  margin="0px"
-  boxSizing="inherit"
-  variant="h4"
-  align="center"
-  fontWeight="600"
-  fontFamily="Outfit"
-  lineHeight="1.5"
-  letterSpacing="0.00938em"
-  sx={{
-    fontSize: { xs: "25px", md: "42px" }, // 25px for <900px, 42px otherwise
-  }}
->
-  Collaborative Projects
-</Typography>
+          margin="0px"
+          boxSizing="inherit"
+          variant="h4"
+          align="center"
+          fontWeight="600"
+          fontFamily="Outfit"
+          lineHeight="1.5"
+          letterSpacing="0.00938em"
+          sx={{
+            fontSize: { xs: "25px", md: "42px" }, // 25px for <900px, 42px otherwise
+          }}
+        >
+          Collaborative Projects
+        </Typography>
 
         <Typography
           variant="body1"
           align="center"
-          sx={{ mt: 1, mb: 4, maxWidth: "1200px", mx: "auto",fontFamily: "Outfit", fontWeight:400, letterSpacing:"0em",lineHeight: 1.334 , fontSize:"18px",   color: "rgba(63, 60, 60, 0.87)"}}
+          sx={{ mt: 1, mb: 4, maxWidth: "1200px", mx: "auto", fontFamily: "Outfit", fontWeight: 400, letterSpacing: "0em", lineHeight: 1.334, fontSize: "18px", color: "rgba(63, 60, 60, 0.87)" }}
         >
           Our collaborative projects have been at the forefront of innovation, solving complex challenges and achieving remarkable outcomes. Here are some notable projects we have undertaken in collaboration with our partners.
         </Typography>
@@ -113,31 +113,42 @@ const CollaborativeProjects = () => {
             </Card>
 
             {/* Navigation Arrows */}
-            <ArrowBackIos
+            <IconButton
+              onClick={handlePrev} // Always allow clicking
               sx={{
                 position: "absolute",
                 left: "5%",
                 color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#FF6600",
+                  opacity: 1,
+                },
                 fontSize: "1.5rem",
                 cursor: "pointer",
-                display: currentIndex === 0 ? "none" : "block",
+                display: { xs: "block", md: "block" }, // Ensure it's visible on normal screens (md and above)
               }}
-              onClick={handlePrev}
-            />
-            <ArrowForwardIos
+            >
+              <ArrowBackIos />
+            </IconButton>
+
+            <IconButton
+              onClick={handleNext}
               sx={{
                 position: "absolute",
                 right: "5%",
                 color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#FF6600",
+                },
                 fontSize: "1.5rem",
                 cursor: "pointer",
-                display: currentIndex === projects.length - 1 ? "none" : "block",
               }}
-              onClick={handleNext}
-            />
+            >
+              <ArrowForwardIos />
+            </IconButton>
           </Box>
         ) : (
-          <Grid container spacing={3} sx={{ width: isTablet ? "85%" : "80%", marginLeft: isTablet ? "5%" : "-17%", height: "500px", borderRadius: "30px" }}>
+          <Grid container spacing={3} sx={{ width: isTablet ? "85%" : "80%", marginLeft: isTablet ? "5%" : "-16%", height: "500px", borderRadius: "30px" }}>
             {projects.map((project, index) => (
               <Grid item xs={12} md={isTablet ? 6 : 5.5} key={index} sx={{ display: "flex" }}>
                 <Card sx={{ backgroundColor: "#512D6D", borderRadius: "17px", p: 2, color: "#fff", width: "100%" }}>
@@ -175,11 +186,40 @@ const CollaborativeProjects = () => {
                   {/* Learn More */}
                   <Typography
                     variant="body2"
-                    sx={{ color: "#FFA500", fontWeight: "bold", mt: 2, cursor: "pointer", textDecoration: "none" }}
+                    sx={{ color: "#FFA500", fontWeight: "bold", mt: 2, cursor: "pointer", textDecoration: "none", fontFamily:"Outfit" , fontWeight:400, lineHeight:1.5, fontSize:"22px"}}
                   >
                     Learn more →
                   </Typography>
                 </Card>
+                <IconButton
+  onClick={handlePrev} // Always allow clicking
+  disabled={currentIndex === 0} // Disable the button when currentIndex is 0
+  sx={{
+    position: "absolute",
+    left: "5%",
+    top: "50%", // Moves the icon towards the vertical center of its container
+    transform: "translateY(-50%)", // Ensures the icon is centered vertically
+    backgroundColor: "#FF6600", // Orange background color
+    borderRadius: "50%", // Makes the background circular
+    p: 1, // Padding to make the icon look better in the circle
+    zIndex: 2,
+    color: "#fff", // White color for the icon
+    cursor: currentIndex === 0 ? "not-allowed" : "pointer", // Disable pointer cursor if the button is disabled
+    "&:hover": {
+      backgroundColor: "#FF6600", // Hover color remains the same as the background
+    },
+    "&.Mui-disabled": {
+      backgroundColor: "#FF6600", // Background stays the same when disabled
+      color: "#fff", // Icon color stays the same when disabled
+      opacity: 0.3, // Reduce opacity when disabled
+    },
+    display: { xs: "block" }, // Ensure it's visible on normal screens (md and above)
+  }}
+>
+  <ArrowBackIos />
+</IconButton>
+
+
               </Grid>
             ))}
           </Grid>
