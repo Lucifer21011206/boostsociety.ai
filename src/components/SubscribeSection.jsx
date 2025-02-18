@@ -1,7 +1,5 @@
 import React from "react";
-import { Box, Container, Typography, Grid, TextField, Button } from "@mui/material";
-import topCornerImage from "../assets/Vector 25.svg"; // Top-left image
-import bottomCornerImage from "../assets/Vector 24.svg"; // Bottom-right image
+import { Box, Container, TextField, Button } from "@mui/material";
 
 const SubscribeSection = () => {
   return (
@@ -9,74 +7,69 @@ const SubscribeSection = () => {
       sx={{ 
         backgroundColor: "#4B2A69", 
         color: "#fff", 
-        py: 6, 
-        borderTopLeftRadius: 0, 
-        borderTopRightRadius: 0, 
+        py: 9,  // Slightly increased the height by changing the padding to 9
         position: "relative", 
         overflow: "hidden",
-        
+        display: "flex",
+        justifyContent: "flex-end", 
       }}
     >
-      {/* Top-Left Corner Image */}
-      <Box 
-        component="img" 
-        src={bottomCornerImage} 
-        alt="Top Corner Design" 
+      <Container 
+        maxWidth="none" // Removes unwanted left padding
         sx={{ 
-          position: "absolute", 
-          top: 120, 
-          left: 0, 
-          width: 100, 
-          height: "auto"
-        }} 
-      />
-
-      <Container maxWidth="lg">
-        <Grid container spacing={3} alignItems="center" width="117%">
-          {/* Text Content */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2,ml:-20 }}>
-              Be The First To Know
-            </Typography>
-            <Typography variant="body1" sx={{ opacity: 0.8, ml:-20 }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </Grid>
-
-          {/* Subscription Form */}
-          <Grid item xs={12} md={6} ml="0%">
-            <Grid container spacing={2}>
-              <Grid item xs={8}>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  placeholder="Your email address"
-                  sx={{ backgroundColor: "#fff", borderRadius: 1 }}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <Button fullWidth variant="contained" sx={{ backgroundColor: "#FF6600", color: "#fff", height: "100%" }}>
-                  Subscribe
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+          display: "flex", 
+          justifyContent: "flex-end",
+          alignItems: "center",
+          flexDirection: "row",
+          width: "100%",
+          px: 0, // Remove default padding
+        }}
+      >
+        {/* Email Input and Subscribe Button */}
+        <Box 
+          sx={{ 
+            display: "flex", 
+            gap: 2, 
+            flexShrink: 0,
+            justifyContent: "flex-end", 
+            width: "auto", // Prevents unnecessary stretching
+            marginLeft: "auto", // Ensures it's completely right-aligned
+          }}
+        >
+          <TextField
+            variant="outlined"
+            placeholder="Enter your email address"
+            sx={{ 
+              backgroundColor: "#fff", 
+              borderRadius: 1, 
+              width: { xs: "calc(100% - 40px)", sm: "486px" },  // Width for small screens
+              height: "53px", 
+              marginLeft: { xs: "20px", sm: 0 }, // Margin left for screens smaller than 600px
+            }}
+          />
+          <Button 
+            variant="contained" 
+            sx={{
+              minWidth: "120px",
+              fontFamily: "Outfit",
+              fontWeight: "500",
+              display: "inline-flex",
+              boxSizing: "border-box",
+              lineHeight: "1.75",
+              letterSpacing: "0.02857em",
+              backgroundColor: "#FF6600", 
+              color: "rgba(0, 0, 0, 0.26)", 
+              height: "53px",
+              px: { xs: 3, sm: 4, md: 4 },
+              background: "linear-gradient(98deg, rgb(228, 103, 3) -1.68%, rgb(199, 52, 13) 103.45%)",
+              borderRadius: "5px",
+              marginRight:"6%"
+            }}
+          >
+            Subscribe
+          </Button>
+        </Box>
       </Container>
-
-      {/* Bottom-Right Corner Image */}
-      <Box 
-        component="img" 
-        src={topCornerImage} 
-        alt="Bottom Corner Design" 
-        sx={{ 
-          position: "absolute", 
-          bottom: 120, 
-          right: 0, 
-          width: 100, 
-          height: "auto"
-        }} 
-      />
     </Box>
   );
 };

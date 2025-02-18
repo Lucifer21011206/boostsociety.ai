@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Typography, Card, CardContent, CardMedia, IconButton, useMediaQuery } from "@mui/material";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import vector24 from "../assets/Vector 24.svg";
+import TextContent from "./TextContent";
 
 const partners = [
   { name: "U.S. Black Chambers", description: "Affectionately known as the “National Voice of Black Businesses”, the USBC provides committed, visionary leadership, and advocacy in the realization of economic empowerment.", img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718215010230_USBClogo-with-text.png" },
@@ -35,10 +36,41 @@ const CollaborativePartners = () => {
   return (
     <Box sx={{ display: "flex", padding: "2rem 0px 1rem", flexDirection: "column", width: "93%", mx: "auto", px: { xs: 2, sm: 3, md: 5, lg: 8 }, py: 5, position: "relative", overflow: "hidden", mt: 4 }}>
       <Box sx={{ textAlign: "center", maxWidth: "800px", mx: "auto", px: 2 }}>
-        <Typography variant="h4" sx={{ mt: "-6%", marginLeft: "6%", mb: "2%", fontWeight: 600, fontFamily: "Outfit", fontSize: "2.5em", lineHeight: 1.5 }} fontWeight="bold">Collaborative Partners</Typography>
-        <Typography variant="body1" sx={{ marginLeft: "-20%", textAlign: "Center", mt: 1, mb: 4, fontSize: "18px", width: "150%", fontWeight: 400, fontFamily: "Outfit", color: "rgba(63, 60, 60, 0.87)", lineHeight: 1.334 }}>
-          Business Boost! Society is proud to collaborate with industry-leading partners who share our vision for innovation and excellence. These strategic partnerships allow us to combine our expertise and resources to deliver exceptional solutions to our clients. Here are some of our valued collaborative partners.
-        </Typography>
+      <Typography
+  variant="h4"
+  sx={{
+    mt: "-6%",
+    marginLeft: "6%",
+    mb: "2%",
+    fontWeight: 600,
+    fontFamily: "Outfit",
+    fontSize: { xs: "1.5em", sm: "2.5em" }, // 🔽 Decrease font size for mobile screens
+    lineHeight: 1.5,
+  }}
+  fontWeight="bold"
+>
+  {TextContent.collaborativepartners.heading}
+</Typography>
+
+        <Typography
+  variant="body1"
+  sx={{
+    marginLeft: { xs: "0%", sm: "-10%", md: "-20%" }, 
+    textAlign: "center",
+    mt: 1,
+    mb: 4,
+    fontSize: { xs: "16px", sm: "17px", md: "18px" },
+    width: { xs: "100%", sm: "120%", md: "150%" }, 
+    fontWeight: 400,
+    fontFamily: "Outfit",
+    color: "rgba(63, 60, 60, 0.87)",
+    lineHeight: 1.334,
+    px: { xs: 2, sm: 4, md: 4 }, // Adds slight horizontal padding in mobile screens
+  }}
+>
+  {TextContent.collaborativepartners.subheading}
+</Typography>
+
       </Box>
 
       {/* Carousel Container */}
@@ -72,51 +104,76 @@ const CollaborativePartners = () => {
         </IconButton>
 
         {/* Carousel Items */}
-        <Box sx={{ display: "flex", flexWrap: "nowrap", gap: 2, transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`, transition: "transform 0.5s ease-in-out", width: "98%", position: "relative" }}>
-          {partners.map((partner, index) => (
-            <Card key={index} sx={{ width: isMobile ? "calc(100%/1)" : "calc(100% / 3.5)", height: { xs: "320px", md: "340px" }, backgroundColor: index % 2 === 0 ? "rgba(82, 49, 104, 0.1)" : "#FFF3E0", borderRadius: "12px 12px 12px 0", display: "flex", flexDirection: "column", justifyContent: "space-between", p: 3.5, flexShrink: 0, position: "relative" }}>
-              
-              {/* Logo Section */}
-              <Box sx={{ display: "flex", alignItems: "center", width: "100%", mb: 1 }}>
-                <CardMedia component="img" image={partner.img} alt={partner.name} sx={{ height: "80.4px", width: "auto", objectFit: "contain", maxWidth: "60%", ml: 0 }} />
-              </Box>
+        <Box 
+  sx={{
+    display: "flex", 
+    flexWrap: "nowrap", 
+    gap: 2, 
+    transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`, 
+    transition: "transform 0.5s ease-in-out", 
+    width: "98%", 
+    position: "relative",
+    paddingRight: isMobile ? "10px" : "0", // ✅ Added padding on the right for mobile screens
+  }}
+>
+  {partners.map((partner, index) => (
+    <Card
+      key={index}
+      sx={{
+        width: isMobile ? "calc(100% / 1.1)" : "calc(100% / 3.5)", // Slightly reduce card width on mobile
+        height: { xs: "320px", md: "340px" },
+        backgroundColor: index % 2 === 0 ? "rgba(82, 49, 104, 0.1)" : "#FFF3E0",
+        borderRadius: "12px 12px 12px 0",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        p: 3.5,
+        flexShrink: 0,
+        position: "relative",
+      }}
+    >
+      {/* Logo Section */}
+      <Box sx={{ display: "flex", alignItems: "center", width: "100%", mb: 1 }}>
+        <CardMedia component="img" image={partner.img} alt={partner.name} sx={{ height: "80.4px", width: "auto", objectFit: "contain", maxWidth: "60%", ml: 0 }} />
+      </Box>
 
-              {/* Content Section */}
-              <CardContent sx={{ p: 0 }}>
-                <Typography variant="h6" fontWeight="bold" sx={{ textAlign: "left", mb: 1, mt: "-5%" }}>
-                  {partner.name}
-                </Typography>
-                <Typography variant="body2" sx={{ textAlign: "justify", fontSize: "0.9rem", mt: 2 }}>
-                  {partner.description}
-                </Typography>
-              </CardContent>
+      {/* Content Section */}
+      <CardContent sx={{ p: 0 }}>
+        <Typography variant="h6" fontWeight="bold" sx={{ textAlign: "left", mb: 1, mt: "-5%" }}>
+          {partner.name}
+        </Typography>
+        <Typography variant="body2" sx={{ textAlign: "justify", fontSize: "0.9rem", mt: 2 }}>
+          {partner.description}
+        </Typography>
+      </CardContent>
 
-              {/* Learn More */}
-              <Typography
-                variant="body2"
-                sx={{
-                  fontFamily: "Outfit",
-                  color: "rgb(84, 47, 3)",
-                  fontWeight: "400",
-                  lineHeight: 1.5,
-                  letterSpacing: "0.00938em",
-                  fontSize: "22px",
-                  cursor: "pointer",
-                  textAlign: "left",
-                  mt: 0,
-                  mb: 3,
-                }}
-              >
-                Learn more →
-              </Typography>
+      {/* Learn More */}
+      <Typography
+        variant="body2"
+        sx={{
+          fontFamily: "Outfit",
+          color: "rgb(84, 47, 3)",
+          fontWeight: "400",
+          lineHeight: 1.5,
+          letterSpacing: "0.00938em",
+          fontSize: "22px",
+          cursor: "pointer",
+          textAlign: "left",
+          mt: 0,
+          mb: 3,
+        }}
+      >
+        {TextContent.collaborativepartners.learnmore}
+      </Typography>
 
-              {/* Vector Overlay Image */}
-              <Box sx={{ position: "absolute", bottom: -6, left: 0, opacity: 1, width: "100px", height: "100px" }}>
-                <CardMedia component="img" src={vector24} alt="Vector 24" sx={{ width: "100%", height: "100%", objectFit: "contain" }} />
-              </Box>
-            </Card>
-          ))}
-        </Box>
+      {/* Vector Overlay Image */}
+      <Box sx={{ position: "absolute", bottom: -9, left: 0, opacity: 1, width: "100px", height: "100px" }}>
+        <CardMedia component="img" src={vector24} alt="Vector 24" sx={{ width: "100%", height: "100%", objectFit: "contain" }} />
+      </Box>
+    </Card>
+  ))}
+</Box>
+
 
         {/* Right Arrow Button */}
         <IconButton
@@ -124,7 +181,7 @@ const CollaborativePartners = () => {
           disabled={currentIndex + visibleCards >= totalPartners}
           sx={{
             position: "absolute",
-            right: 10,
+            right: 7,
             top: "50%",
             transform: "translateY(-50%)",
             backgroundColor: "#FF6600",

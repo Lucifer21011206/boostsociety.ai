@@ -4,6 +4,7 @@ import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import { useSwipeable } from "react-swipeable";
 import orange from "../assets/Vector 27.png"; // Orange curved overlay image
+import TextContent from "./TextContent";
 
 const projects = [
   {
@@ -58,7 +59,7 @@ const CollaborativeProjects = () => {
             fontSize: { xs: "25px", md: "42px" }, // 25px for <900px, 42px otherwise
           }}
         >
-          Collaborative Projects
+          {TextContent.collaborativeprojects.heading}
         </Typography>
 
         <Typography
@@ -66,7 +67,7 @@ const CollaborativeProjects = () => {
           align="center"
           sx={{ mt: 1, mb: 4, maxWidth: "1200px", mx: "auto", fontFamily: "Outfit", fontWeight: 400, letterSpacing: "0em", lineHeight: 1.334, fontSize: "18px", color: "rgba(63, 60, 60, 0.87)" }}
         >
-          Our collaborative projects have been at the forefront of innovation, solving complex challenges and achieving remarkable outcomes. Here are some notable projects we have undertaken in collaboration with our partners.
+          {TextContent.collaborativeprojects.subheading}
         </Typography>
 
         {/* Mobile View: Carousel */}
@@ -142,6 +143,7 @@ const CollaborativeProjects = () => {
                 },
                 fontSize: "1.5rem",
                 cursor: "pointer",
+                
               }}
             >
               <ArrowForwardIos />
@@ -188,7 +190,7 @@ const CollaborativeProjects = () => {
                     variant="body2"
                     sx={{ color: "#FFA500", fontWeight: "bold", mt: 2, cursor: "pointer", textDecoration: "none", fontFamily:"Outfit" , fontWeight:400, lineHeight:1.5, fontSize:"22px"}}
                   >
-                    Learn more →
+                    {TextContent.collaborativepartners.learnmore}
                   </Typography>
                 </Card>
                 <IconButton
@@ -217,6 +219,33 @@ const CollaborativeProjects = () => {
   }}
 >
   <ArrowBackIos />
+</IconButton>
+<IconButton
+  onClick={handleNext} // Always allow clicking
+  disabled={currentIndex === 0} // Disable the button when currentIndex is 0
+  sx={{
+    position: "absolute",
+    right: "5%",
+    top: "50%", // Moves the icon towards the vertical center of its container
+    transform: "translateY(-50%)", // Ensures the icon is centered vertically
+    backgroundColor: "#FF6600", // Orange background color
+    borderRadius: "50%", // Makes the background circular
+    p: 1, // Padding to make the icon look better in the circle
+    zIndex: 2,
+    color: "#fff", // White color for the icon
+    cursor: currentIndex === 0 ? "not-allowed" : "pointer", // Disable pointer cursor if the button is disabled
+    "&:hover": {
+      backgroundColor: "#FF6600", // Hover color remains the same as the background
+    },
+    "&.Mui-disabled": {
+      backgroundColor: "#FF6600", // Background stays the same when disabled
+      color: "#fff", // Icon color stays the same when disabled
+      opacity: 0.3, // Reduce opacity when disabled
+    },
+    display: { xs: "block" }, // Ensure it's visible on normal screens (md and above)
+  }}
+>
+  <ArrowForwardIos />
 </IconButton>
 
 

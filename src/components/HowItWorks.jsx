@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Container, Typography, Grid, List, ListItem, ListItemText } from "@mui/material";
 import girlImage from "../assets/girl.png"; // Background Image (Girl Image)
 import boyImage from "../assets/boy.svg"; // Circular Image (Boy Image)
+import TextContent from "./TextContent";
 
 const HowItWorks = () => {
   return (
@@ -34,7 +35,7 @@ const HowItWorks = () => {
             }}
           >
             <Typography variant="subtitle1" fontFamily="Sans serif" sx={{ fontWeight: 600, fontSize: "20px", lineHeight: 1.5, letterSpacing: "0.00938em", color: "#fff" }}>
-              Next Steps:
+              {TextContent.howitworkssection.minimainheading}
             </Typography>
             <Typography
               variant="h4"
@@ -50,18 +51,18 @@ const HowItWorks = () => {
                 fontSize: { xs: "20px", md: "40px", lg: "58px" }, // Responsive font sizes
               }}
             >
-              How Does It Work
+              {TextContent.howitworkssection.mainheading}
             </Typography>
 
             {/* For Prospective Partners */}
             <Typography variant="h6" sx={{ fontSize: "30px", fontWeight: "600", fontFamily: "Outfit", mt: 3, lineHeight: 1.5, letterSpacing: "0.00938em" }}>
-              For Prospective Partners:
+            {TextContent.howitworkssection.subheading1}
             </Typography>
             <List sx={{ mt: 2, pl: 2 }}>
               {[
-                "Review the features and benefits on this page.",
-                "Email us with information regarding your interest in a strategic partnership. You can expect a follow-up within 48-72 business hours.",
-                "Join our vibrant community at BusinessBoostSociety.com to take advantage of personalized insights, expert advice, exclusive events, collaboration opportunities, and other resources.",
+                TextContent.howitworkssection.content11,
+                TextContent.howitworkssection.content12,
+                TextContent.howitworkssection.content13,
               ].map((item, index) => (
                 <ListItem key={index} sx={{ pl: 0, mb: 0, fontFamily: "Outfit" }}>
                   <ListItemText
@@ -76,11 +77,11 @@ const HowItWorks = () => {
 
             {/* For Students, Entrepreneurs, or Business Owners */}
             <Typography variant="h6" sx={{ fontWeight: 500, mt: 3, fontSize: "30px", fontFamily: "Outfit", lineHeight: 1.5 }}>
-              For Students, Entrepreneurs, or Existing Business Owners Interested in a Cohort:
+            {TextContent.howitworkssection.subheading2}
             </Typography>
             <List sx={{ mt: 2, pl: 2 }}>
               {[
-                "Review the features and benefits on this page.",
+                TextContent.howitworkssection.content11,
                 "Browse our list of cohorts, select a cohort and apply! You can expect a decision according to the info included in the application details.",
                 "Join BusinessBoostSociety.com for personalized insights, expert advice, exclusive events, and collaboration opportunities.",
               ].map((item, index) => (
