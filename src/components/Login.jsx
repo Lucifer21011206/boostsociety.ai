@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Box, Grid, Typography, TextField, Button, FormControlLabel, Checkbox, Link, useTheme, useMediaQuery } from "@mui/material";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+
 import rightsidesection from "../assets/rigthsidesection.svg";
 import logoicon from "../assets/icon.png";
 
 const Login = () => {
-<<<<<<< HEAD
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
@@ -40,8 +38,6 @@ const Login = () => {
 
   };
 
-=======
->>>>>>> bc53f302a182c3fcf4722dc6130fe581d8b9bea3
   const isSmallHeight = useMediaQuery("(max-height: 640px)");
   const isMediumHeight = useMediaQuery("(min-height: 641px) and (max-height: 790px)");
   const theme = useTheme();
@@ -49,14 +45,14 @@ const Login = () => {
   const isMediumScreen = useMediaQuery(theme.breakpoints.between(900, 1280)); // Adjust width when image is hidden
 
   // Form validation schema
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password is required"),
-  });
+  // const validationSchema = Yup.object({
+  //   email: Yup.string()
+  //     .email("Invalid email address")
+  //     .required("Email is required"),
+  //   password: Yup.string()
+  //     .min(6, "Password must be at least 6 characters")
+  //     .required("Password is required"),
+  // });
 
   return (
     <Grid
@@ -109,7 +105,6 @@ const Login = () => {
           </Typography>
 
           {/* Form Fields */}
-<<<<<<< HEAD
           <Box sx={{ textAlign: "left", mt: 2 }}>
             <Typography sx={{ fontSize: "18px", fontWeight: "400", color: "#333", mt: "6%", mb: "4px" }}>
               Email
@@ -156,47 +151,6 @@ const Login = () => {
               }}
             />
           </Box>
-=======
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            validationSchema={validationSchema}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
-          >
-            {({ setFieldValue, handleSubmit }) => (
-              <Form onSubmit={handleSubmit}>
-                <Box sx={{ textAlign: "left", mt: 2 }}>
-                  <Typography sx={{ fontSize: "18px", fontWeight: "400", color: "#333", mt: "6%", mb: "4px" }}>
-                    Email
-                  </Typography>
-                  <Field
-                    name="email"
-                    as={TextField}
-                    fullWidth
-                    variant="outlined"
-                    placeholder="Enter your email address"
-                    sx={{ "& .MuiOutlinedInput-root": { borderRadius: "10px" } }}
-                    error={!!setFieldValue.errors.email && setFieldValue.touched.email}
-                    helperText={<ErrorMessage name="email" />}
-                  />
-
-                  <Typography sx={{ mt: 3, fontSize: "18px", fontWeight: "400", color: "#333", mb: "4px" }}>
-                    Password
-                  </Typography>
-                  <Field
-                    name="password"
-                    as={TextField}
-                    fullWidth
-                    variant="outlined"
-                    type="password"
-                    placeholder="Enter password"
-                    sx={{ "& .MuiOutlinedInput-root": { borderRadius: "10px" } }}
-                    error={!!setFieldValue.errors.password && setFieldValue.touched.password}
-                    helperText={<ErrorMessage name="password" />}
-                  />
-                </Box>
->>>>>>> bc53f302a182c3fcf4722dc6130fe581d8b9bea3
 
                 {/* Remember me and Forgot Password */}
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: 2 }}>
@@ -206,7 +160,6 @@ const Login = () => {
                   </Link>
                 </Box>
 
-<<<<<<< HEAD
           {/* Login Button */}
           <Button
             variant="contained"
@@ -225,29 +178,6 @@ const Login = () => {
           >
             Login Now
           </Button>
-=======
-                {/* Login Button */}
-                <Button
-                  variant="contained"
-                  sx={{
-                    mt: 3,
-                    width: "28%",
-                    background: "linear-gradient(98deg, rgb(228, 103, 3) -1.68%, rgb(199, 52, 13) 103.45%)",
-                    padding: "12px",
-                    fontSize: "16px",
-                    fontWeight: 600,
-                    borderRadius: "8px",
-                    textTransform: "none",
-                    "&:hover": { opacity: 0.9 },
-                  }}
-                  type="submit"
-                >
-                  Login Now
-                </Button>
-              </Form>
-            )}
-          </Formik>
->>>>>>> bc53f302a182c3fcf4722dc6130fe581d8b9bea3
         </Box>
       </Grid>
 
