@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography, Grid, List, ListItem, ListItemText } from "@mui/material";
-import girlImage from "../assets/girl.png"; // Background Image (Girl Image)
+import work from "../assets/work.png"; // Background Image (Girl Image)
 import boyImage from "../assets/boy.svg"; // Circular Image (Boy Image)
 import TextContent from "./TextContent";
 
@@ -9,13 +9,13 @@ const HowItWorks = () => {
     <Box
       sx={{
         position: "relative",
-        backgroundImage: `url(${girlImage})`,
+        backgroundImage: `url(${work})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         color: "#fff",
-        pb: 10,
-        pt: 5,
+        pb: 5,
+        pt: 0,
         pr: 2,
         overflow: "hidden",
       }}
@@ -26,15 +26,14 @@ const HowItWorks = () => {
           <Grid
             item
             xs={12}
-            md={6}
+            md={7} // Increased width from 6 to 7
             sx={{
               position: "relative",
               zIndex: 2,
-              // Increase the negative margin for larger screens to move it further left
-              ml: { xs: 0, md: -20 }, // Increased negative margin to -20 for larger screens
+              ml: { xs: 0, md: -20 },
             }}
           >
-            <Typography variant="subtitle1" fontFamily="Sans serif" sx={{ fontWeight: 600, fontSize: "20px", lineHeight: 1.5, letterSpacing: "0.00938em", color: "#fff" }}>
+            <Typography variant="subtitle1" fontFamily="Sans serif" sx={{ mt: 2, fontWeight: 600, fontSize: "20px", lineHeight: 1.5, letterSpacing: "0.00938em", color: "#fff", scrollbarWidth: "none" }}>
               {TextContent.howitworkssection.minimainheading}
             </Typography>
             <Typography
@@ -42,7 +41,7 @@ const HowItWorks = () => {
               sx={{
                 fontWeight: "bold",
                 color: "#FF6600",
-                mt: 1,
+                mt: 0,
                 fontFamily: "Outfit",
                 lineHeight: 1.5,
                 letterSpacing: "0.00938em",
@@ -55,20 +54,27 @@ const HowItWorks = () => {
             </Typography>
 
             {/* For Prospective Partners */}
-            <Typography variant="h6" sx={{ fontSize: "30px", fontWeight: "600", fontFamily: "Outfit", mt: 3, lineHeight: 1.5, letterSpacing: "0.00938em" }}>
-            {TextContent.howitworkssection.subheading1}
+            <Typography variant="h6" sx={{ fontSize: "30px", fontWeight: "600", fontFamily: "Outfit", mt: 1, lineHeight: 1.5, letterSpacing: "0.00938em", ml:2 ,width:"110%"}}>
+              {TextContent.howitworkssection.subheading1}
             </Typography>
-            <List sx={{ mt: 2, pl: 2 }}>
+            <List sx={{ mt: 0, pl: 2 , width:"105%"}}>
               {[
                 TextContent.howitworkssection.content11,
                 TextContent.howitworkssection.content12,
                 TextContent.howitworkssection.content13,
               ].map((item, index) => (
-                <ListItem key={index} sx={{ pl: 0, mb: 0, fontFamily: "Outfit" }}>
+                <ListItem key={index} sx={{ pl: 0, fontFamily: "Outfit", mb: -2.0 }}> 
                   <ListItemText
                     primary={`${index + 1}. ${item}`}
                     primaryTypographyProps={{
-                      sx: { fontWeight: 500, fontFamily: "Outfit", color: "#fff", lineHeight: 1, letterSpacing: "0.00938em", fontSize: "18px" },
+                      sx: { 
+                        fontWeight: 500, 
+                        fontFamily: "Outfit", 
+                        color: "#fff", 
+                        lineHeight: 1.2, 
+                        letterSpacing: "0.00938em", 
+                        fontSize: "18px" 
+                      },
                     }}
                   />
                 </ListItem>
@@ -76,10 +82,10 @@ const HowItWorks = () => {
             </List>
 
             {/* For Students, Entrepreneurs, or Business Owners */}
-            <Typography variant="h6" sx={{ fontWeight: 500, mt: 3, fontSize: "30px", fontFamily: "Outfit", lineHeight: 1.5 }}>
-            {TextContent.howitworkssection.subheading2}
+            <Typography variant="h6" sx={{ fontWeight: 500, mt: 1, fontSize: "30px", fontFamily: "Outfit", lineHeight: 1.5, ml:2, width:"110%" }}>
+              {TextContent.howitworkssection.subheading2}
             </Typography>
-            <List sx={{ mt: 2, pl: 2 }}>
+            <List sx={{ mt: 0, pl: 2 , width:"110%"}}>
               {[
                 TextContent.howitworkssection.content11,
                 "Browse our list of cohorts, select a cohort and apply! You can expect a decision according to the info included in the application details.",
@@ -99,30 +105,19 @@ const HowItWorks = () => {
 
           {/* Right Side - Boy Image inside a Round Circle */}
           <Grid 
-  item 
-  xs={12} 
-  md={6} 
-  sx={{ 
-    display: "flex", 
-    justifyContent: "center", 
-    position: "relative", 
-    zIndex: 3, 
-    ml: { xs: 0, md: 18 } // Set margin-left to 18 for medium and larger screens
-  }}
->
-  <Box
-    sx={{
-      width: "100%",
-      borderRadius: "50%",
-      border: "8px solid #fff",
-      overflow: "hidden",
-      height: "100%",
-      mr: { xs: 0, sm: -2, md: -5 }, // No negative margin on small screens, gradually increasing for larger screens
-    }}
-  >
-    <img src={boyImage} alt="Boy Image" style={{ width: "100%", display: "block" }} />
-  </Box>
-</Grid>
+            item 
+            xs={12} 
+            md={5} // Reduced from 6 to 5 to balance with wider content
+            sx={{ 
+              display: "flex", 
+              justifyContent: "center", 
+              position: "relative", 
+              zIndex: 3, 
+              ml: { xs: 0, md: 18 }
+            }}
+          >
+           
+          </Grid>
         </Grid>
       </Container>
     </Box>

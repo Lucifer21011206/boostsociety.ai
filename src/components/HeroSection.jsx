@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import backgroundImg1 from "../assets/BackgroundImg1.png";
 import backgroundImg2 from "../assets/BackgroundImg2.png";
+import TextContent from "./TextContent";
 
 const slidesData = [
   {
@@ -43,7 +44,7 @@ const HeroSection = () => {
       <Box
         sx={{
           position: "absolute",
-          bottom: isMobile ? "20px" : "60px",
+          bottom: isMobile ? "385px" : "20px",
           left: "50%",
           transform: "translateX(-50%)",
           display: "flex",
@@ -72,22 +73,13 @@ const HeroSection = () => {
   };
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        width: "100vw",
-        height: isMobile 
-          ? "40vh" 
-          : isTablet 
-          ? "60vh"  // Prevents excessive height causing blank space
-          : "80vh", 
-        mb: isTablet ? "0" : "2%", // Removes margin that was creating white space
-        overflow: "hidden",
-      }}
-    >
+    <Box sx={{ position: "relative", width: "100vw",
+     height: isMobile? "40vh":"80vh", 
+     overflow: "hidden" }}>
       <Slider {...settings}>
         {slidesData.map((slide, index) => (
-          <Box key={index} sx={{ position: "relative", width: "100%", height: "100%" }}>
+          <Box key={index} sx={{ position: "relative", width: "100%", height: "80vh" }}>
+            {/* Background Image */}
             <img
               src={slide.image}
               alt="Hero Background"
@@ -97,6 +89,9 @@ const HeroSection = () => {
                 objectFit: "cover",
               }}
             />
+
+            {/* Dark Overlay */}
+            {/* <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.4)" }} /> */}
           </Box>
         ))}
       </Slider>
@@ -106,66 +101,70 @@ const HeroSection = () => {
         sx={{
           position: "absolute",
           top: isMobile ? "8%" : isTablet ? "12%" : "18%",
-          left: isMobile ? "2%" : "4%",
+          left: isMobile ? "2%" : "4%", // ✅ Moved more towards the left
           right: isMobile ? "2%" : "4%",
           textAlign: "left",
           color: "white",
-          width: isMobile ? "85%" : isTablet ? "50%" : "45%",
+          width: isMobile ? "85%" : isTablet ? "50%" : "45%", // ✅ Adjusted width to fit well
         }}
       >
-        <Typography
-          variant="h2"
-          sx={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: isMobile ? "22px" : "3.8vw",
-            fontWeight: "700",
-            mt: isMobile ? "5%" : "",
-            letterSpacing: "1.4px",
-            textTransform: "capitalize",
-            pr: isMobile ? (slidesData[currentSlide].title.length > 20 ? "8vw" : "5vw") : "0",
-            wordBreak: "break-word",
-            width: isMobile ? "auto" : "110%",
-          }}
-        >
-          {slidesData[currentSlide].title}
-        </Typography>
+    <Typography
+  variant="h2"
+  sx={{
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: isMobile ? "7vw" : "3.8vw", // 🔽 Reduced for mobile screens
+    fontWeight: "700",
+    letterSpacing: "1.4px",
+    textTransform: "capitalize",
+    pr: isMobile ? (slidesData[currentSlide].title.length > 20 ? "8vw" : "5vw") : "0",
+    wordBreak: "break-word",
+    width: isMobile ? "auto" : "110%", 
+  }}
+>
+  {slidesData[currentSlide].title}
+</Typography>
 
-        <Typography
-          variant="h6"
-          sx={{
-            color: "#ffffffbf",
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: isMobile ? "3.5vw" : "20px",
-            fontWeight: "400",
-            letterSpacing: ".4px",
-            lineHeight: "140%",
-            margin: "0 0 20px",
-            width: "110%",
-          }}
-        >
-          {slidesData[currentSlide].description}
-        </Typography>
+<Typography
+  variant="h6"
+  sx={{
+    color: "#ffffffbf",
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: isMobile ? "3.5vw" : "20px", // 🔽 Slightly smaller for mobile screens
+    fontWeight: "400",
+    letterSpacing: ".4px",
+    lineHeight: "140%", 
+    margin: "0 0 20px",
+    width: "110%",
+  }}
+>
+  {slidesData[currentSlide].description}
+</Typography>
 
-        {/* Button */}
+
+        {/* Button (No Change) */}
         <Button
-          variant="contained"
-          sx={{
-            mt: { xs: 2, sm: 3, md: 3, lg: -3 },
-            backgroundImage: "linear-gradient(to right, #FFA500, #FF4500)",
-            color: "#fff",
-            fontWeight: "bold",
-            fontFamily: "Outfit",
-            borderRadius: "15px",
-            px: { xs: 3, md: 6 },
-            py: { xs: 1.5, md: 2.5 },
-            minWidth: { xs: "200px", md: "280px" },
-            mx: { xs: "auto", md: "0" },
-            ml: { xs: "auto", md: "0", lg: "960px" },
-            mr: { xs: "auto", md: "10%" },
-          }}
-        >
-          Know More →
-        </Button>
+  variant="contained"
+  sx={{
+    mt: { xs: 2, sm: 3, md: 3, lg: -3 }, // ✅ Ensures proper visibility in the 900-1300px range
+    backgroundImage: "linear-gradient(to right, #FFA500, #FF4500)",
+    background:"var(--Linear,linear-gradient(98deg,#e46703 -1.68%,#c7340d 103.45%))",
+    color: "#fff",
+    fontWeight: "bold",
+    fontFamily: "Outfit",
+    borderRadius: "15px",
+    px: { xs: 3, md: 6 }, // Reduced padding for smaller screens
+    py: { xs: 1.5, md: 2.5 }, // Reduced height for smaller screens
+    minWidth: { xs: "200px", md: "280px" }, // Reduced width for smaller screens
+    mx: { xs: "auto", md: "0" },
+    ml: { xs: "auto", md: "0", lg: "960px" }, // ✅ Keeps it centered in the 900-1300px range
+    mr: { xs: "auto", md: "10%" },
+  }}
+>
+  Know More →
+</Button>
+
+
+
       </Box>
     </Box>
   );

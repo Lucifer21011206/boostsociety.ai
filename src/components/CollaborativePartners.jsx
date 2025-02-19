@@ -65,7 +65,7 @@ const CollaborativePartners = () => {
     fontFamily: "Outfit",
     color: "rgba(63, 60, 60, 0.87)",
     lineHeight: 1.334,
-    px: { xs: 2, sm: 4, md: 4 }, // Adds slight horizontal padding in mobile screens
+    px: { xs: 1, sm: 4, md: 4 }, // Adds slight horizontal padding in mobile screens
   }}
 >
   {TextContent.collaborativepartners.subheading}
@@ -109,20 +109,21 @@ const CollaborativePartners = () => {
     display: "flex", 
     flexWrap: "nowrap", 
     gap: 2, 
-    transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`, 
+    transform: `translateX(calc(-${currentIndex * (100 / visibleCards)}% + ${currentIndex * 20}px))`,
     transition: "transform 0.5s ease-in-out", 
     width: "98%", 
     position: "relative",
     paddingRight: isMobile ? "10px" : "0", // ✅ Added padding on the right for mobile screens
   }}
 >
+
   {partners.map((partner, index) => (
     <Card
       key={index}
       sx={{
-        width: isMobile ? "calc(100% / 1.1)" : "calc(100% / 3.5)", // Slightly reduce card width on mobile
-        height: { xs: "320px", md: "340px" },
-        backgroundColor: index % 2 === 0 ? "rgba(82, 49, 104, 0.1)" : "#FFF3E0",
+        width: isMobile ? "calc(100% / 1.3)" : "calc(100% / 4.2)", // Slightly reduce card width on mobile
+        height: { xs: "30px", md: "340px" },
+        backgroundColor: index % 2 === 0 ? "rgba(82, 49, 104, 0.1)" : "rgba(255, 188, 109, 0.1)",
         borderRadius: "12px 12px 12px 0",
         display: "flex",
         flexDirection: "column",
@@ -130,6 +131,7 @@ const CollaborativePartners = () => {
         p: 3.5,
         flexShrink: 0,
         position: "relative",
+        m:1,
       }}
     >
       {/* Logo Section */}
@@ -139,10 +141,10 @@ const CollaborativePartners = () => {
 
       {/* Content Section */}
       <CardContent sx={{ p: 0 }}>
-        <Typography variant="h6" fontWeight="bold" sx={{ textAlign: "left", mb: 1, mt: "-5%" }}>
+        <Typography variant="h6"  sx={{lineHeight:"1.334", fontWeight:"700" ,fontSize:"1.5rem", textAlign: "left", mb: 1, mt: "-5%" }}>
           {partner.name}
         </Typography>
-        <Typography variant="body2" sx={{ textAlign: "justify", fontSize: "0.9rem", mt: 2 }}>
+        <Typography variant="body2" sx={{ color:"rgba(63, 60, 60, 0.87)",textAlign: "justify", fontSize: "0.9rem", mt: 2 , fontFamily:"Outfit", fontWeight:"400"}}>
           {partner.description}
         </Typography>
       </CardContent>
