@@ -73,7 +73,34 @@ const CollaborativeProjects = () => {
         {/* Mobile View: Carousel */}
         {isMobile ? (
           <Box {...handlers} sx={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
-            <Card sx={{ backgroundColor: "#512D6D", borderRadius: "17px", p: 2, color: "#fff", width: "80%" }}>
+            <Card 
+  sx={{ 
+    backgroundColor: "#512D6D", 
+    borderRadius: "17px", 
+    p: 2, 
+    color: "#fff", 
+    width: { xs: "95%", sm: "80%", md: "47%" }, // Ensuring both cards stay side by side until 1050px
+    mx: { xs: "auto", sm: 4, md: 4, lg: 8, xl: 10 }, // Ensuring proper margin spacing
+    ml: { 
+      xs: "auto",  // Centered on small screens
+      sm: "5%",    // Small tablets (600px - 900px)
+      md: "6%",    // Medium tablets (900px - 1050px)
+      lg: "9%",    // Large tablets (1100px - 1280px)
+    },
+    
+    // Ensuring both cards remain side by side till 1050px
+    "@media (max-width: 1050px) and (min-width: 600px)": {
+      display: "inline-block", // Prevents stacking too early
+      width: "48%", // Ensures both cards fit within the screen
+      ml: "3%", // Adds margin to prevent merging with the left side
+    }
+  }}
+>
+
+
+
+
+
               {/* Project Image */}
               <Box sx={{ position: "relative", borderRadius: "8px", width: "100%", height: "auto" }}>
                 <CardMedia
@@ -194,59 +221,71 @@ const CollaborativeProjects = () => {
                   </Typography>
                 </Card>
                 <IconButton
-  onClick={handlePrev} // Always allow clicking
-  disabled={currentIndex === 0} // Disable the button when currentIndex is 0
+  onClick={handlePrev}
+  disabled={currentIndex === 0}
   sx={{
     position: "absolute",
     left: "5%",
-    top: "50%", // Moves the icon towards the vertical center of its container
-    transform: "translateY(-50%)", // Ensures the icon is centered vertically
-    backgroundColor: "#FF6600", // Orange background color
-    borderRadius: "50%", // Makes the background circular
-    p: 1, // Padding to make the icon look better in the circle
+    top: "50%",
+    transform: "translateY(-50%)",
+    backgroundColor: "#FF6600",
+    borderRadius: "50%", // Ensures a perfect circular shape
+    width: "45px", // ✅ Fixed width
+    height: "45px", // ✅ Fixed height
+    minWidth: "45px", // ✅ Prevents shrinking
+    minHeight: "45px", // ✅ Prevents shrinking
+    display: "flex", // ✅ Centers the icon inside
+    alignItems: "center",
+    justifyContent: "center",
     zIndex: 2,
-    color: "#fff", // White color for the icon
-    cursor: currentIndex === 0 ? "not-allowed" : "pointer", // Disable pointer cursor if the button is disabled
+    color: "#fff",
+    cursor: currentIndex === 0 ? "not-allowed" : "pointer",
     "&:hover": {
-      backgroundColor: "#FF6600", // Hover color remains the same as the background
+      backgroundColor: "#FF6600",
     },
     "&.Mui-disabled": {
-      backgroundColor: "#FF6600", // Background stays the same when disabled
-      color: "#fff", // Icon color stays the same when disabled
-      opacity: 0.3, // Reduce opacity when disabled
+      backgroundColor: "#FF6600",
+      color: "#fff",
+      opacity: 0.3,
     },
-    display: { xs: "block" }, // Ensure it's visible on normal screens (md and above)
   }}
 >
-  <ArrowBackIos />
+  <ArrowBackIos sx={{ fontSize: "20px" }} /> {/* ✅ Adjusted icon size if needed */}
 </IconButton>
+
 <IconButton
-  onClick={handleNext} // Always allow clicking
-  disabled={currentIndex === 0} // Disable the button when currentIndex is 0
+  onClick={handleNext}
+  disabled={currentIndex === 0}
   sx={{
     position: "absolute",
     right: "5%",
-    top: "50%", // Moves the icon towards the vertical center of its container
-    transform: "translateY(-50%)", // Ensures the icon is centered vertically
-    backgroundColor: "#FF6600", // Orange background color
-    borderRadius: "50%", // Makes the background circular
-    p: 1, // Padding to make the icon look better in the circle
+    top: "50%",
+    transform: "translateY(-50%)",
+    backgroundColor: "#FF6600",
+    borderRadius: "50%", // Ensures a circular shape
+    width: "45px", // ✅ Fixed width
+    height: "45px", // ✅ Fixed height (same as width for a perfect circle)
+    minWidth: "45px", // ✅ Ensures no shrinkage
+    minHeight: "45px", // ✅ Ensures no shrinkage
+    display: "flex", // ✅ Ensures proper alignment
+    alignItems: "center",
+    justifyContent: "center",
     zIndex: 2,
-    color: "#fff", // White color for the icon
-    cursor: currentIndex === 0 ? "not-allowed" : "pointer", // Disable pointer cursor if the button is disabled
+    color: "#fff",
+    cursor: currentIndex === 0 ? "not-allowed" : "pointer",
     "&:hover": {
-      backgroundColor: "#FF6600", // Hover color remains the same as the background
+      backgroundColor: "#FF6600",
     },
     "&.Mui-disabled": {
-      backgroundColor: "#FF6600", // Background stays the same when disabled
-      color: "#fff", // Icon color stays the same when disabled
-      opacity: 0.3, // Reduce opacity when disabled
+      backgroundColor: "#FF6600",
+      color: "#fff",
+      opacity: 0.3,
     },
-    display: { xs: "block" }, // Ensure it's visible on normal screens (md and above)
   }}
 >
-  <ArrowForwardIos />
+  <ArrowForwardIos sx={{ fontSize: "20px" }} /> {/* ✅ Adjust icon size if needed */}
 </IconButton>
+
 
 
               </Grid>

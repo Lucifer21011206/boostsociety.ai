@@ -39,12 +39,12 @@ const CollaborativePartners = () => {
       <Typography
   variant="h4"
   sx={{
-    mt: "-6%",
-    marginLeft: "6%",
+    mt: "-5.2%", // 🔽 Moved very slightly down
+    marginLeft: { xs: "-8%", sm: "-5%", md: "-2%" }, // Keeps left alignment
     mb: "2%",
     fontWeight: 600,
     fontFamily: "Outfit",
-    fontSize: { xs: "1.5em", sm: "2.5em" }, // 🔽 Decrease font size for mobile screens
+    fontSize: { xs: "1.5em", sm: "2.5em" }, // Ensures readability
     lineHeight: 1.5,
   }}
   fontWeight="bold"
@@ -52,29 +52,47 @@ const CollaborativePartners = () => {
   {TextContent.collaborativepartners.heading}
 </Typography>
 
-        <Typography
+
+
+
+
+
+<Typography
   variant="body1"
   sx={{
-    marginLeft: { xs: "0%", sm: "-10%", md: "-20%" }, 
+    marginLeft: { xs: "-4%", sm: "-18%", md: "-28%" }, // Existing margin adjustments
     textAlign: "center",
     mt: 1,
     mb: 4,
     fontSize: { xs: "16px", sm: "17px", md: "18px" },
-    width: { xs: "100%", sm: "120%", md: "150%" }, 
+    width: { xs: "100%", sm: "120%", md: "150%" },
     fontWeight: 400,
     fontFamily: "Outfit",
     color: "rgba(63, 60, 60, 0.87)",
     lineHeight: 1.334,
-    px: { xs: 1, sm: 4, md: 4 }, // Adds slight horizontal padding in mobile screens
+    px: { xs: 1, sm: 4, md: 4 },
+
+    // Apply specific margin when the screen width is between 601px and 1250px
+    "@media (min-width: 601px) and (max-width: 1250px)": {
+      marginLeft: "-10%", // Adjust this value as needed to prevent content merging
+      width: "110%", // Slightly reduce width for better fit
+    },
   }}
 >
   {TextContent.collaborativepartners.subheading}
 </Typography>
 
+
+
+
+
+
+
+
       </Box>
 
       {/* Carousel Container */}
-      <Box sx={{ display: "flex", justifyContent: "center", overflow: "hidden", mt: 3, position: "relative" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", overflow: "hidden", mt: -0.5, position: "relative" }}>
         {/* Left Arrow Button */}
         <IconButton
           onClick={handlePrev}
@@ -118,22 +136,24 @@ const CollaborativePartners = () => {
 >
 
   {partners.map((partner, index) => (
-    <Card
-      key={index}
-      sx={{
-        width: isMobile ? "calc(100% / 1.3)" : "calc(100% / 4.2)", // Slightly reduce card width on mobile
-        height: { xs: "30px", md: "340px" },
-        backgroundColor: index % 2 === 0 ? "rgba(82, 49, 104, 0.1)" : "rgba(255, 188, 109, 0.1)",
-        borderRadius: "12px 12px 12px 0",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        p: 3.5,
-        flexShrink: 0,
-        position: "relative",
-        m:1,
-      }}
-    >
+   <Card
+   key={index}
+   sx={{
+     width: isMobile ? "calc(100% / 1.3)" : "calc(100% / 4.2)", 
+     height: { xs: "320px", md: "340px" },
+     backgroundColor: index % 2 === 0 ? "rgba(82, 49, 104, 0.1)" : "rgba(255, 188, 109, 0.1)",
+     borderRadius: "12px 12px 12px 0",
+     display: "flex",
+     flexDirection: "column",
+     justifyContent: "space-between",
+     p: 3.5,
+     flexShrink: 0,
+     position: "relative",
+     m: 1,
+     
+   }}
+ >
+ 
       {/* Logo Section */}
       <Box sx={{ display: "flex", alignItems: "center", width: "100%", mb: 1 }}>
         <CardMedia component="img" image={partner.img} alt={partner.name} sx={{ height: "80.4px", width: "auto", objectFit: "contain", maxWidth: "60%", ml: 0 }} />
@@ -141,12 +161,34 @@ const CollaborativePartners = () => {
 
       {/* Content Section */}
       <CardContent sx={{ p: 0 }}>
-        <Typography variant="h6"  sx={{lineHeight:"1.334", fontWeight:"700" ,fontSize:"1.5rem", textAlign: "left", mb: 1, mt: "-5%" }}>
-          {partner.name}
-        </Typography>
-        <Typography variant="body2" sx={{ color:"rgba(63, 60, 60, 0.87)",textAlign: "justify", fontSize: "0.9rem", mt: 2 , fontFamily:"Outfit", fontWeight:"400"}}>
-          {partner.description}
-        </Typography>
+      <Typography 
+  variant="h6"  
+  sx={{
+    lineHeight: "1.334", 
+    fontWeight: 700, 
+    textAlign: "left", 
+    mb: 1, 
+    mt: "-5%",
+    fontSize: { xs: "1rem", sm: "1rem", md: "1.5rem" } // 1rem for <900px, 1.5rem for larger screens
+  }}
+>
+  {partner.name}
+</Typography>
+
+        <Typography 
+  variant="body2" 
+  sx={{ 
+    color: "rgba(63, 60, 60, 0.87)", 
+    textAlign: "justify", 
+    mt: 2, 
+    fontFamily: "Outfit", 
+    fontWeight: 400,
+    fontSize: { xs: "13px", sm: "13px", md: "13px", lg: "15px" } // 13px for <1200px, 15px for larger
+  }}
+>
+  {partner.description}
+</Typography>
+
       </CardContent>
 
       {/* Learn More */}

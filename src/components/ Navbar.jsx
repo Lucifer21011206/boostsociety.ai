@@ -46,7 +46,7 @@ const Navbar = () => {
         position="fixed"
         elevation={0}
         sx={{
-          height: isMobile ? 60 : 72.4, // Decrease height on mobile
+          height: isMobile ? 70 : 72.4, // Decrease height on mobile
           backgroundColor: "#fff",
           color: "#000",
           padding: isMobile ? "5px 15px" : "9px 20px", // Adjust padding for mobile
@@ -63,15 +63,18 @@ const Navbar = () => {
           {/* Left Section: Logo & Mobile Menu - Shifted slightly to the left */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 1, ml: isMobile ? 0 : 2 }}>
             {/* Mobile Menu Icon */}
-            <IconButton
-              onClick={toggleDrawer}
-              sx={{
-                display: { xs: "block", md: "none" },
-                color: "#000",
-              }}
-            >
-              <Menu />
-            </IconButton>
+            {/* Mobile Menu Icon */}
+<IconButton
+  onClick={toggleDrawer}
+  sx={{
+    display: { xs: "block", md: "none" },
+    color: "#000",
+    ml: "-28px", // Move it more to the left on mobile
+  }}
+>
+  <Menu />
+</IconButton>
+
 
             {/* Logo */}
             <Box
@@ -81,35 +84,39 @@ const Navbar = () => {
                 display: "flex",
                 alignItems: "center",
                 textDecoration: "none",
-                mt: { xs: "-8px", md: "-10px" }, // Move logo up on all screens
+                mt: { xs: "-8px", md: "-18px" }, // Move logo up on all screens
               }}
             >
               <img
-                src={logo}
-                alt="Business Boost Society"
-                style={{
-                  height: isMobile ? 35 : 60, // Smaller on mobile, bigger on desktop
-                  width: "auto",
-                  marginLeft: isMobile ? "10px" : "0px", // Move logo slightly left on mobile
-                }}
-              />
+  src={logo}
+  alt="Business Boost Society"
+  style={{
+    height: isMobile ? 60 : 60, // Keep height 60 on all screens
+    width: isMobile ? 78 : "auto", // Set width to 78px on mobile
+    marginLeft: isMobile ? "10px" : "4px", // Move logo slightly left on mobile
+  }}
+/>
+
             </Box>
           </Box>
 
           {/* Right Section: Navigation Links + Buttons */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2, ml: "auto" }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0, ml: "auto" ,mt:"-8px"}}>
             {/* Desktop Navigation Links (Hidden on Mobile) */}
             <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
-              <Button component={Link} to="/about" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap", gap:"30%"}}>
+              <Button component={Link} to="/about" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap", gap:"10%"}}>
                 {TextContent.navbar.aboutus} <img src={line317} alt="Login Icon" style={{width: "20px", height: "20px" }} />
               </Button>
-              <Button component={Link} to="/cohort" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap",gap:"30%" }}>
+              <Button component={Link} to="/cohort" sx={{ 
+                ml:"-4%", color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap",gap:"10%" }}>
               {TextContent.navbar.cohort} <img src={line317} alt="Login Icon" style={{width: "20px", height: "20px" }} />
               </Button>
-              <Button component={Link} to="/accelerator" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap", gap:"20%"}}>
+              <Button component={Link} to="/accelerator" sx={{ 
+                ml:"-4%",color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap", gap:"10%"}}>
               {TextContent.navbar.accelerator} <img src={line317} alt="Login Icon" style={{width: "20px", height: "20px" }} />
               </Button>
-              <Button component={Link} to="/contact" sx={{ color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap" }}>
+              <Button component={Link} to="/contact" sx={{ 
+                ml:"-4%",color: "#000", textTransform: "none" ,fontFamily: "Outfit", fontStyle:"normal", fontSize:"15px", fontWeight:400, whiteSpace:"nowrap" }}>
               {TextContent.navbar.contactus}
               </Button>
             </Box>
@@ -124,34 +131,49 @@ const Navbar = () => {
                 textTransform: "none",
                 whiteSpace: "nowrap",
                 minWidth: "fit-content",
+                ml:"-5%",
+                mr:"1%",
+                mt:"0.5%"
               }}
             >
               {TextContent.navbar.signup}
             </Button>
             <Button
-              component={Link}
-              to="/login"
-              variant="outlined"
-              sx={{
-                borderColor: "#ff6600",
-                color: "#ff6600",
-                textTransform: "none",
-                fontWeight: "bold",
-                borderRadius: "5px",
-                whiteSpace: "nowrap",
-                minWidth: "fit-content",
-                gap:"10%"
-              }}
-              // startIcon={<Login />}
-            >
-              {TextContent.navbar.login}   <img src={loginIcon} alt="Login Icon" style={{width: "20px", height: "20px" }} />
-            </Button>
+  component={Link}
+  to="/login"
+  variant="outlined"
+  sx={{
+    borderColor: "#ff6600",
+    color: "#ff6600",
+    textTransform: "none",
+    fontWeight: "bold",
+    borderRadius: "5px",
+    whiteSpace: "nowrap",
+    minWidth: "fit-content",
+    width: "130px",
+    height: "42px",
+    gap: "10%",
+    border: "2px solid var(--Linear, #E46703)",
+
+    // Mobile responsiveness
+    "@media (max-width:600px)": {
+      width: "83.8px",
+      height: "30.75px",
+    },
+  }}
+>
+  {TextContent.navbar.login}  
+  <img src={loginIcon} alt="Login Icon" style={{ width: "20px", height: "20px" }} />
+</Button>
+
             <IconButton
   onClick={toggleDarkMode}
   sx={{
     color: "#000",
     pr: 6,
-    mr: { xs: 2, sm: 0, md: 2, lg: 0 }, // ✅ Adjusts margin for both mobile & 600-1600px range
+    mr: { xs: -4, sm: 0, md: 2, lg: -1 }, // ✅ Adjusts margin for both mobile & 600-1600px range
+    ml:"1%"
+    
   }}
 >
   {darkMode ? <WbSunny /> : <NightsStay />}

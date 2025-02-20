@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import { Box, Typography, Avatar, Button, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Box, Typography, Avatar, IconButton, useMediaQuery } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import SwipeableViews from "react-swipeable-views";
+import { useTheme } from "@mui/material/styles";
 
-// Testimonials Data
 const testimonials = [
   {
-    name: "Nathaniel Owner",
-    
+    name: "Nathaniel",
+    title: "Owner",
     text: "This cohort has been amazing! I am so more confident about myself as a leader and the direction of my business. Thank you, Business BOOST! Society!!!",
     img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1715111550471_blob",
   },
   {
-    name: "Beatriz Owner",
-    
+    name: "Beatriz W.",
+    title: "Owner",
     text: "Taking over my late father's construction business as a woman in a male-dominated industry is tough. This cohort provided me with the knowledge, connections & confidence needed to navigate city contracts which my father wanted to pursue. Thanks, BOOST!",
     img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1721840222921_BeatrizWillington-construction.png",
   },
   {
-    name: "Ta'Nesha Justice Owner",
-    
+    name: "Ta'Nesha Justice",
+    title: "Owner",
     text: "Being part of the BOOST! Your Business cohort has been incredible. The guidance and support from my BSA and others were invaluable in helping me achieve several business goals. Thanks to BOOST!, my Comfy Care products are now on Amazon!",
     img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1723667869953_TaNeshaJustice_ComfyCare_biopic.jpg",
   },
@@ -32,186 +30,223 @@ const TestimonialsSection = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <Box sx={{ textAlign: "center", py: 10, backgroundColor: "#FAFAFA" }}>
-      {/* Heading */}
-      <Typography variant="h4" sx={{ fontWeight: "600", fontSize: "42px", fontFamily: "Outfit", mb: 3 }}>
+    <Box sx={{ textAlign: "center", py: 10, backgroundColor: "#FAFAFA", position: "relative" }}>
+      <Typography variant="h4" fontWeight="600" sx={{ fontSize: "42px", fontFamily: "Outfit", lineHeight: 1.5 }}>
         You Are The Center Of Our Universe
       </Typography>
-      <Typography variant="h5" sx={{ fontFamily: "Outfit", fontSize: "32px", fontWeight: 600 }} mt={1} mb={12}>
+      <Typography variant="h5" fontWeight="600" mt={1} mb={8} sx={{ fontSize: "32px", fontFamily: "Outfit", lineHeight: 1.5 }}>
         Testimonials
       </Typography>
 
-      {/* Testimonial Cards Container */}
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", ml:-3,gap: 2.5, px: 2, position: "relative" ,width: isMobile ? "110%":"100%"}}>
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", px: 2, position: "relative" }}>
         {/* Left Arrow */}
-        <Button
-          onClick={handlePrev}
+        <IconButton
           sx={{
-            minWidth:isMobile? "40px": "50px",
-            height:isMobile? "40px": "50px",
+            position: "absolute",
+            left: isMobile ? "5%" : "3%",
+            width: isMobile ? "40px" : "50px",
+            height: isMobile ? "40px" : "50px",
             backgroundColor: "#f4a261",
             color: "#fff",
-            zIndex:2,
-            right:isMobile?"-7%":"-3%",
+            zIndex: 2,
             borderRadius: "50%",
-            px: 2,
             "&:hover": { backgroundColor: "#e76f51" },
           }}
+          onClick={handlePrev}
         >
           <ArrowBackIosNewIcon fontSize="medium" />
-        </Button>
+        </IconButton>
 
-        {/* Mobile: Swipeable Carousel */}
-        {isMobile ? (
-          <SwipeableViews index={activeIndex} onChangeIndex={setActiveIndex} enableMouseEvents>
-            {testimonials.map((item, index) => (
-              <Box
-  key={index}
+        {/* Testimonials Container */}
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 0 : 3, width: "100%", px: 4 }}>
+          {isMobile ? (
+            // Mobile View: Only one testimonial at a time
+            <Box
   sx={{
-    position: "relative",
-    width: "80%", // Increased width
-    minHeight: "330px",
-    backgroundColor: index === 1 ? "rgba(82, 49, 104, 0.1)" : "rgb(233, 233, 233)",
-    boxShadow: "rgba(0, 0, 0, 0.11) 0px 1px 1px, rgba(0, 0, 0, 0.11) 0px 2px 2px, rgba(0, 0, 0, 0.11) 0px 4px 4px, rgba(0, 0, 0, 0.11) 0px 6px 8px, rgba(0, 0, 0, 0.11) 0px 8px 16px",
-    borderRadius: "15px",
-    p: 4,
+    width: "100%",
+    minHeight: "230px",
+    backgroundColor: "rgb(233, 233, 233)",
+    borderRadius: "12px",
+    padding: "50px 30px 60px",
     textAlign: "center",
+    position: "relative",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-between",
+    boxShadow: {
+      xs: "rgba(0, 0, 0, 0.11) 0px 1px 1px, rgba(0, 0, 0, 0.11) 0px 2px 2px, rgba(0, 0, 0, 0.11) 0px 4px 4px, rgba(0, 0, 0, 0.11) 0px 6px 8px, rgba(0, 0, 0, 0.11) 0px 8px 16px",
+      md: "none",
+    },
   }}
 >
-<Avatar
-  src={item.img}
-  alt={item.name}
-  sx={{
-    width: 80,
-    height: 80,
-    position: "absolute",
-    top: isMobile ? "-10px" : "-40px", // Adjusted for mobile
-    left: "50%",
-    transform: "translateX(-50%)",
-    border: "4px solid white",
+  <Avatar
+    src={testimonials[activeIndex].img}
+    sx={{
+      width: 80,
+      height: 80,
+      position: "absolute",
+      top: "-40px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      border: "4px solid white",
+    }}
+  />
+
+<Typography 
+  variant="body1" 
+  sx={{ 
+    mt: 6, 
+    fontFamily: "Outfit", 
+    fontSize: { xs: "14px", sm: "18px" }, // Font size 14px on mobile, 18px on larger screens
+    textAlign: "center" 
   }}
-/>
+>
+  "{testimonials[activeIndex].text}"
+</Typography>
 
-  <Typography
-    variant="body1"
-    color="text.primary"
-    sx={{ fontFamily: "Outfit", fontWeight: 400, fontSize: "1rem", mt: -1 }}
-  >
-    "{item.text}"
-  </Typography>
-
-  {/* Name positioned at bottom-right */}
+  {/* Name & Title Section with Conditional Margin */}
   <Box
     sx={{
-      position: "absolute",
-      bottom: "10px",
-      right: "10px",
-      textAlign: "right",
+      display: "flex",
+      justifyContent: "center",
+      gap: "3px",
+      mt: { xs: "12px", md: "6px" }, // More margin on mobile to avoid crowding
     }}
   >
-    <Typography
-      variant="body2"
-      fontWeight="bold"
-      sx={{
-        fontFamily: "Outfit",
-        fontWeight: 400,
-        fontSize: "1rem",
-        lineHeight: 1.5,
-        letterSpacing: "0.00938em",
-        pr: 2,
-        pb: 2,
-      }}
-    >
-      {item.name}
+    <Typography variant="body2" fontWeight="bold" 
+     
+    sx={{ fontSize: { xs: "14px", sm: "18px" },
+    fontWeight: { xs: 400, sm: "bold" },
+    fontFamily: "Outfit" }}>
+      {testimonials[activeIndex].name},
     </Typography>
+    <Typography 
+  variant="body2" 
+  fontSize="18px" 
+  sx={{ 
+    fontSize: { xs: "14px", sm: "18px" }, // Font size 14px on mobile, 18px on larger screens
+    fontWeight: { xs: 400, sm: "bold" }, // Font weight 400 on mobile, bold on larger screens
+    fontFamily: "Outfit", 
+    // color: "#525252" 
+  }}
+>
+  {testimonials[activeIndex].title}
+</Typography>
+
   </Box>
 </Box>
 
-            ))}
-          </SwipeableViews>
-        ) : (
-          // Desktop: Show All Three Cards
-          testimonials.map((item, index) => (
-            <Box
-            key={index}
-            sx={{
-              position: "relative",
-              width: "720px", // Increased width from 670px to 720px
-              minHeight: "300px",
-              backgroundColor: index === 1 ? "rgba(82, 49, 104, 0.1)" : "rgb(233, 233, 233)",
-              boxShadow: "rgba(0, 0, 0, 0.11) 0px 1px 1px, rgba(0, 0, 0, 0.11) 0px 2px 2px, rgba(0, 0, 0, 0.11) 0px 4px 4px, rgba(0, 0, 0, 0.11) 0px 6px 8px, rgba(0, 0, 0, 0.11) 0px 8px 16px",
-              borderRadius: "15px",
-              p: 4,
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-          
-              <Avatar
-                src={item.img}
-                alt={item.name}
-                sx={{
-                  width: 80,
-                  height: 80,
-                  position: "absolute",
-                  top: "-40px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  border: "4px solid white",
-                }}
-              />
-              <Typography variant="body1"  color="text.primary" sx={{ fontFamily: "Outfit", fontWeight: 400, fontSize: "1rem", mt: -1 }}>
-                "{item.text}"
-              </Typography>
+
+          ) : (
+            // Desktop View: All testimonials visible
+            testimonials.map((item, index) => (
               <Box
+                key={index}
+                sx={{
+                  position: "relative",
+                  width: "420px", 
+                  minHeight: "295px",
+                  backgroundColor: index === 1 ? "rgba(82, 49, 104, 0.1)" : "rgb(233, 233, 233)",
+                  borderRadius: "12px",
+                  padding: "40px 25px 50px",
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.11) 0px 1px 1px, rgba(0, 0, 0, 0.11) 0px 2px 2px, rgba(0, 0, 0, 0.11) 0px 4px 4px, rgba(0, 0, 0, 0.11) 0px 6px 8px, rgba(0, 0, 0, 0.11) 0px 8px 16px",
+                }}
+              >
+                <Avatar
+                  src={item.img}
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    position: "absolute",
+                    top: "-40px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    border: "4px solid white",
+                  }}
+                />
+               <Typography variant="body1" sx={{lineHeight:1.5, fontsize:"1rem",mt: -2, fontFamily: "Outfit", textAlign: "center" }}>
+  "{item.text}"
+</Typography>
+
+                <Box
+  sx={{
+    position: "absolute",
+    bottom: "10px",
+    right: "10px",
+    textAlign: "right",
+    display: "flex",
+    alignItems: "center",
+     // Reduced gap
+  }}
+>
+  <Typography
+    variant="body2"
+    fontWeight="bold"
     sx={{
-      position: "absolute",
-      bottom: "10px",
-      right: "10px",
-      textAlign: "right",
+      fontFamily: "Outfit",
+      fontWeight: 400,
+      fontSize: "1rem",
+      lineHeight: 1.5,
+      letterSpacing: "0.00938em",
+      pr: 2,
+      pb: 2,
     }}
   >
-    <Typography
-      variant="body2"
-      fontWeight="bold"
-      sx={{
-        fontFamily: "Outfit",
-        fontWeight: 400,
-        fontSize: "1rem",
-        lineHeight: 1.5,
-        letterSpacing: "0.00938em",
-        pr:2,
-        pb:2
-      }}
-    >
-      {item.name}
-    </Typography>
-  </Box>
-            </Box>
-          ))
-        )}
+    {item.name},
+  </Typography>
+  <Typography
+    variant="body2"
+    fontWeight="bold"
+    sx={{
+      fontFamily: "Outfit",
+      fontWeight: 400,
+      fontSize: "1rem",
+      lineHeight: 1.5,
+      letterSpacing: "0.00938em",
+      pr: 2,
+      pb: 2,
+    }}
+  >
+    {item.title}
+  </Typography>
+</Box>
+
+              </Box>
+            ))
+          )}
+        </Box>
 
         {/* Right Arrow */}
-        <Button onClick={handleNext} sx={{  minWidth:isMobile? "40px": "50px",
-            height:isMobile? "40px": "50px", left:isMobile?"-8%":"-2%",backgroundColor: "#f4a261", color: "#fff", borderRadius: "50%", px: 0, "&:hover": { backgroundColor: "#e76f51" } }}>
+        <IconButton
+          sx={{
+            position: "absolute",
+            right: isMobile ? "5%" : "3%",
+            minWidth: isMobile ? "40px" : "50px",
+            height: isMobile ? "40px" : "50px",
+            backgroundColor: "#f4a261",
+            color: "#fff",
+            borderRadius: "50%",
+            "&:hover": { backgroundColor: "#e76f51" },
+          }}
+          onClick={handleNext}
+        >
           <ArrowForwardIosIcon fontSize="medium" />
-        </Button>
+        </IconButton>
       </Box>
     </Box>
   );

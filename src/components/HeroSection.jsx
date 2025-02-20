@@ -6,6 +6,32 @@ import "slick-carousel/slick/slick-theme.css";
 import backgroundImg1 from "../assets/BackgroundImg1.png";
 import backgroundImg2 from "../assets/BackgroundImg2.png";
 import TextContent from "./TextContent";
+import EastIcon from "@mui/icons-material/East";
+
+ <Button
+  variant="contained"
+  sx={{
+    mt: { xs: 1.5, sm: 2.5, md: 2.5, lg: -5.5 }, // 🔼 Moves it slightly up
+    backgroundImage: "linear-gradient(to right, #FFA500, #FF4500)",
+    background: "var(--Linear,linear-gradient(98deg,#e46703 -1.68%,#c7340d 103.45%))",
+    lineHeight:1.5,
+    color: "#fff",
+    letterSpacing:"0.00938em",
+    fontWeight: "600",
+    fontFamily: "Outfit",
+    fontSize: "1.2rem",
+    borderRadius: "15px",
+    textTransform: "none",
+    px: { xs: 3, md: 6 },
+    py: { xs: 1.5, md: 2 }, 
+    minWidth: { xs: "200px", md: "275px" },
+    mx: { xs: "auto", md: "0" },
+    ml: { xs: "auto", md: "2%", lg: "970px" }, // 🔼 Moves it slightly right
+    mr: { xs: "auto", md: "9%" },
+  }}
+>
+  Know More →
+</Button>
 
 const slidesData = [
   {
@@ -108,17 +134,19 @@ const HeroSection = () => {
           width: isMobile ? "85%" : isTablet ? "50%" : "45%", // ✅ Adjusted width to fit well
         }}
       >
-    <Typography
+  <Typography
   variant="h2"
   sx={{
     fontFamily: "'Outfit', sans-serif",
-    fontSize: isMobile ? "7vw" : "3.8vw", // 🔽 Reduced for mobile screens
+    fontSize: isMobile ? "7vw" : "4vw",
     fontWeight: "700",
     letterSpacing: "1.4px",
     textTransform: "capitalize",
     pr: isMobile ? (slidesData[currentSlide].title.length > 20 ? "8vw" : "5vw") : "0",
     wordBreak: "break-word",
-    width: isMobile ? "auto" : "110%", 
+    width: isMobile ? "372px" : "115%",
+    mt: isMobile ? "8px" : "17px",
+    ml: isMobile ? "5px" : "-4px", // 🔼 Shifted slightly to the right on mobile
   }}
 >
   {slidesData[currentSlide].title}
@@ -129,39 +157,48 @@ const HeroSection = () => {
   sx={{
     color: "#ffffffbf",
     fontFamily: "'Outfit', sans-serif",
-    fontSize: isMobile ? "3.5vw" : "20px", // 🔽 Slightly smaller for mobile screens
+    fontSize: isMobile ? "3.5vw" : "20px",
     fontWeight: "400",
     letterSpacing: ".4px",
     lineHeight: "140%", 
     margin: "0 0 20px",
-    width: "110%",
+    width: "115%",
+    mt: isMobile ? "8px" : "10px",
+    ml: isMobile ? "5px" : "-4px", // 🔼 Shifted slightly to the right on mobile
   }}
 >
   {slidesData[currentSlide].description}
 </Typography>
 
-
-        {/* Button (No Change) */}
-        <Button
+{/* Button */}
+<Button
   variant="contained"
   sx={{
-    mt: { xs: 2, sm: 3, md: 3, lg: -3 }, // ✅ Ensures proper visibility in the 900-1300px range
+    mt: { xs: 1.5, sm: 2.5, md: 2.5, lg: -6 },
     backgroundImage: "linear-gradient(to right, #FFA500, #FF4500)",
-    background:"var(--Linear,linear-gradient(98deg,#e46703 -1.68%,#c7340d 103.45%))",
+    background: "var(--Linear,linear-gradient(98deg,#e46703 -1.68%,#c7340d 103.45%))",
+    lineHeight: 1.5,
     color: "#fff",
-    fontWeight: "bold",
+    letterSpacing: "0.00938em",
+    fontWeight: "700",
     fontFamily: "Outfit",
-    borderRadius: "15px",
-    px: { xs: 3, md: 6 }, // Reduced padding for smaller screens
-    py: { xs: 1.5, md: 2.5 }, // Reduced height for smaller screens
-    minWidth: { xs: "200px", md: "280px" }, // Reduced width for smaller screens
+    fontSize: { xs: "1em", md: "1.2rem" }, // 🔼 Set to 1em on mobile screens
+    borderRadius: "12px",
+    textTransform: "none",
+    px: { xs: 3, md: 6 },
+    py: { xs: 1.5, md: 2 },
+    minWidth: { xs: "200px", md: "270px" },
     mx: { xs: "auto", md: "0" },
-    ml: { xs: "auto", md: "0", lg: "960px" }, // ✅ Keeps it centered in the 900-1300px range
-    mr: { xs: "auto", md: "10%" },
+    ml: { xs: "10px", md: "2%", lg: "970px" },
+    mr: { xs: "auto", md: "8%" },
   }}
 >
-  Know More →
+  Know more <EastIcon sx={{ ml: 4, fontSize: "1.4rem" }} />
 </Button>
+
+
+
+
 
 
 
