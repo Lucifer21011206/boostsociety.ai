@@ -46,7 +46,25 @@ const FeaturesSection = () => {
       <Container width="100%">
         <Grid container spacing={8} alignItems="flex-start" width="100vw">
           {/* Left Content */}
-          <Grid item xs={12} md={6} sx={{ pl: { md: "5%", lg: 0 }, width: "50%" }}>
+          <Grid 
+  item 
+  xs={12} 
+  md={6} 
+  sx={{ 
+    pl: { md: "5%", lg: 0 }, 
+    width: "50%", 
+    "@media (min-width:900px) and (max-width:1400px)": { ml: "5%" },
+    "@media (min-width:1400px) and (max-width:1480px)": { ml: "3%" },
+    "@media (min-width:1200px) and (max-width:1340px)": { ml: "8%" },
+    "@media (min-width:1200px) and (max-width:1280px)": { ml: "11%" }
+  }}
+>
+
+
+
+
+
+
             <Typography variant="body2" fontFamily="Alumni Sans" fontSize="20px" lineHeight="1.5" sx={{ mt: 2, fontWeight: "600", color: "rgb(251, 63, 16)",  }}>
               Key Features & Benefits
             </Typography>

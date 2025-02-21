@@ -11,14 +11,14 @@ const SubscribeSection = () => {
     setIsSubmitted(true);
 
     if (!email.trim()) {
-      setError("Email address is required");
+      setError("Email address is required.");
       return;
     }
 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailPattern.test(email)) {
-      setError("Please enter a valid email id");
+      setError("Please enter a valid email address.");
     } else {
       setError(""); // Clear the error message when the email is valid
     }
@@ -30,7 +30,7 @@ const SubscribeSection = () => {
     setIsTyping(value.length > 0);
 
     if (!value.trim()) {
-      setError(isSubmitted ? "Email is required" : "");
+      setError(isSubmitted ? "Email is required." : "");
     } else {
       const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       setError(emailPattern.test(value) ? "" : "Please enter a valid email address.");
@@ -81,7 +81,7 @@ const SubscribeSection = () => {
                 backgroundColor: "#fff", 
                 borderRadius: 1, 
                 width: { xs: "calc(100% - 40px)", sm: "486px" },  
-                height: "53px", 
+                height: "56px", 
                 marginLeft: { xs: "20px", sm: 0 },
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {

@@ -11,7 +11,7 @@ const partners = [
   { name: "SLDC - St. Louis", description: "SLDC is the independent economic development agency serving the City of St. Louis, MO. It's an action-oriented organization that exists to empower, develop and transform St. Louis through a vibrant, just & growing economy where all people can thrive.", img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718221479778_SLDClogo.png" },
   { name: "NYSBBA", description: "The New York State Black Business Alliance (NYSBBA) was created to empower and sustain Black businesses and the communities where they are domiciled through entrepreneurship and capitalistic initiatives across the State.", img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718221600059_NYSBBA_pic.png" },
   { name: "NFPBA", description: "The National Forum for Black Public Administrators (NFBPA), a 501(c)(3) nonprofit organization, is the principal and most progressive organization dedicated to the advancement of black public leadership in local and state governments.", img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718221797281_NFBPA.png" },
-  { name: "AACCNJ", description: "The African American Chamber of Commerce of New Jersey is dedicated to economically empowering and sustaining African American communities and businesses through entrepreneurship and capitalistic initiatives throughout NJ and in partnership with the NBCC.A startup accelerator that provides mentorship and investment to high-growth startups.", img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718222642260_Screenshot(971).png" },
+  { name: "AACCNJ", description: "The African American Chamber of Commerce of New Jersey is dedicated to economically empowering and sustaining African American communities and businesses through entrepreneurship and capitalistic initiatives throughout NJ and in partnership with the NBCC.", img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718222642260_Screenshot(971).png" },
   { name: "Bunker Labs - Atlanta / IVMF", description: "With more resources than ever to support our community of entrepreneurs, Bunker Labs/IVMF's mission is to help veteran and military spouse entrepreneurs alike launch and grown their own businesses.", img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718222293577_Screenshot(970).png" },
   { name: "Business BOOST! Society™", description: "From personalized insights and expert advice to exclusive events and collaboration opportunities, your Business BOOST! Society account empowers you to take your business to new heights.", img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718226259376_IMG_9514.JPG" },
 ];
@@ -86,9 +86,6 @@ const CollaborativePartners = () => {
 
 
 
-
-
-
       </Box>
 
       {/* Carousel Container */}
@@ -127,7 +124,7 @@ const CollaborativePartners = () => {
     display: "flex", 
     flexWrap: "nowrap", 
     gap: 2, 
-    transform: `translateX(calc(-${currentIndex * (100 / visibleCards)}% + ${currentIndex * 20}px))`,
+    transform: `translateX(calc(-${currentIndex * (100 / visibleCards)}% + ${currentIndex * 80}px))`,
     transition: "transform 0.5s ease-in-out", 
     width: "98%", 
     position: "relative",

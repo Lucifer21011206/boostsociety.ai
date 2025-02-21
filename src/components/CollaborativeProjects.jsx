@@ -14,7 +14,7 @@ const projects = [
   },
   {
     description:
-      "Fascinating conversations with extraordinary individuals. Engage in enlightening exchanges with trailblazers from various sectors and delve into the stories that shaped their paths to success.",
+      "Fascinating conversations with extraordinary individuals. Engage in enlightening exchanges with trailblazers from various sectors and delve into the stories that shaped their paths to successto empowering veteran.",
     img: "https://storageboostaccount.blob.core.windows.net/test-container-new/1718226583321_LWLScreenSaver.png",
   },
 ];
@@ -79,27 +79,21 @@ const CollaborativeProjects = () => {
     borderRadius: "17px", 
     p: 2, 
     color: "#fff", 
-    width: { xs: "95%", sm: "80%", md: "47%" }, // Ensuring both cards stay side by side until 1050px
-    mx: { xs: "auto", sm: 4, md: 4, lg: 8, xl: 10 }, // Ensuring proper margin spacing
+    width: { xs: "95%", sm: "80%", md: "50%" }, 
+    mx: { xs: "auto", sm: 4, md: 2, lg: 8, xl: 10 }, 
+
+    // Apply correct left margins for 900px-1520px, 1200px-1340px, and 1400px-1480px in one line
     ml: { 
-      xs: "auto",  // Centered on small screens
-      sm: "5%",    // Small tablets (600px - 900px)
-      md: "6%",    // Medium tablets (900px - 1050px)
-      lg: "9%",    // Large tablets (1100px - 1280px)
-    },
-    
-    // Ensuring both cards remain side by side till 1050px
-    "@media (max-width: 1050px) and (min-width: 600px)": {
-      display: "inline-block", // Prevents stacking too early
-      width: "48%", // Ensures both cards fit within the screen
-      ml: "3%", // Adds margin to prevent merging with the left side
+      xs: "auto",  
+      sm: "10%",    
+      md: "6%",    
+      lg: "19%",    
+      "@media (min-width: 900px) and (max-width: 1520px), (min-width: 1200px) and (max-width: 1340px), (min-width: 1400px) and (max-width: 1480px)": {
+        ml: "6%",
+      },
     }
   }}
 >
-
-
-
-
 
               {/* Project Image */}
               <Box sx={{ position: "relative", borderRadius: "8px", width: "100%", height: "auto" }}>
@@ -177,9 +171,30 @@ const CollaborativeProjects = () => {
             </IconButton>
           </Box>
         ) : (
-          <Grid container spacing={3} sx={{ width: isTablet ? "85%" : "80%", marginLeft: isTablet ? "5%" : "-16%", height: "500px", borderRadius: "30px" }}>
+          <Grid container spacing={1} sx={{ 
+            display :'flex',
+            width: isTablet ? "40%" : "80%", 
+            height: isTablet? "600px":"430px",
+            marginLeft: isTablet 
+            ? "5%" 
+            : (window.innerWidth >= 900 && window.innerWidth <= 1520)
+            ? "6%" 
+            : "-14%",
+            marginRight: isTablet ? "5%" : "0%",
+            flexDirection:"column",
+           borderRadius: "30px" }}>
             {projects.map((project, index) => (
-              <Grid item xs={12} md={isTablet ? 6 : 5.5} key={index} sx={{ display: "flex" }}>
+              <Grid 
+              item 
+              xs={12} 
+              md={isTablet ? 6 : 5.5} 
+              key={index} 
+              sx={{ 
+                display: "flex",
+                gap: window.innerWidth >= 900 ? "5%" : "inherit", // Reducing horizontal gap on normal screens
+              }}
+            >
+            
                 <Card sx={{ backgroundColor: "#512D6D", borderRadius: "17px", p: 2, color: "#fff", width: "100%" }}>
                   {/* Project Image */}
                   <Box sx={{ position: "relative", borderRadius: "8px", width: "100%", height: "auto" }}>
